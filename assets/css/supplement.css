@@ -19,6 +19,10 @@ progress {
     background-position: 0 0;
   }
 }
+@media print
+{
+  .noprint {display:none;}
+}
 
 .progress {
   display: flex;
