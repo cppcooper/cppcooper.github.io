@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Josh Cooper :: Developer CV</title>
     
@@ -24,24 +24,22 @@
     <link id="theme-style" rel="stylesheet" href="assets/css/devresume.css">
     <link id="theme-style" rel="stylesheet" href="assets/css/devresume-print.css" media="print">
 
-</head> 
+</head>
 
 <body>
-    
     <div class="main-wrapper">
         <div class="container" style="max-width:1074px">
             <article class="resume-wrapper mx-auto theme-bg-light p-5 mb-5 my-5 shadow-lg">
-                
                 <div class="resume-header">
                     <div class="row align-items-center">
                         <div class="resume-title col-12 col-lg-8 col-xl-72">
                             <h2 class="resume-name mb-0 text-uppercase">Josh Cooper</h2>
-                            <div class="resume-tagline mb-3 mb-md-0">Software Engineer</div>
+                            <div id="profession" class="resume-tagline mb-3 mb-md-0">Software Engineer</div>
                         </div><!--//resume-title-->
                         <div class="resume-contact col-12 col-lg-4 col-xl-28">
-                            <ul class="list-unstyled mb-0">
+                            <ul id="contact-details" class="list-unstyled mb-0">
                                 <li class="mb-1"><i class="fas fa-phone-square fa-fw fa-lg mr-2 "></i><a class="resume-link" href="tel:#">1-506 609-1273</a></li>
-                                <li class="mb-1"><i class="fas fa-envelope-square fa-fw fa-lg mr-2"></i><a class="resume-link" href="mailto:#">cooper.s.josh@outlook.com</a></li>
+                                <li class="mb-1"><i class="fas fa-envelope-square fa-fw fa-lg mr-2"></i><a class="resume-link" href="mailto:cooper.s.josh@outlook.com">cooper.s.josh@outlook.com</a></li>
                                 <li class="mb-1"><i class="fab fa-github-square fa-fw fa-lg mr-2"></i><a class="resume-link" href="http://github.com/cppcooper">cppcooper@Github</a></li>
                                 <li class="mb-1"><i class="fab fa-linkedin fa-fw fa-lg mr-2"></i><a class="resume-link" href="http://linkedin.com/in/cppcooper">cppcooper@LinkedIn</a></li>
                                 <li class="mb-0"><i class="fas fa-map-marker-alt fa-fw fa-lg mr-2"></i>Kelowna, British Columbia</li>
@@ -54,8 +52,8 @@
                 <div class="resume-intro py-3">
                     <div class="media flex-column flex-md-row align-items-center">
                         <img class="resume-profile-image mb-3 mb-md-0 mr-md-5 ml-md-0 rounded mx-auto" src="assets/images/pdp.png" alt="image">
-                        <div class="media-body text-left">
-                            <p class="mb-0">A versatile software developer/engineer, self taught with a devotion to continuous self-learning. Possessing a lifetime of IT experience, both professional and hobbyist. Passionate about tinkering, adept at designing software systems, efficient at writing efficient code, and appreciates a well thought out refactoring.</p>
+                        <div id="resume-summary" class="media-body text-left">
+                            <p class="mb-0">A versatile software developer/engineer with a devotion to continuous self-learning. Possessing a lifetime of IT experience, both professional and hobbyist. Passionate about tinkering and I love a good refactor.</p>
                             <br/>
                             <p class="mb-0">Technology's power to transform lives deserves our deepest reverence, and am personally inspired by this capability. Collaborating on such projects, which aim to transform all lives for the better, is the highest goal to which I aspire.</p>
                         </div><!--//media-body-->
@@ -65,7 +63,7 @@
                 <div class="resume-body">
                     <div class="row">
                         <div class="resume-main col-12 col-lg-8 col-xl-72 pr-0 pr-lg-5">
-                            <section class="project-section py-3">
+                            <section id="experience" class="work-section py-3">
                                 <h3 class="text-uppercase resume-section-heading mb-4">Experience</h3>
                                 <div class="item mb-3">
                                     <div class="item-heading row align-items-center mb-2">
@@ -105,7 +103,7 @@
                                 </div><!--//item-->
                             </section><!--//work-section-->
 
-                            <section class="work-section py-3">
+                            <section id="projects" class="project-section py-3">
                                 <h3 class="text-uppercase resume-section-heading mb-4">Projects</h3>
                                 <div class="item mb-3">
                                     <div class="item-heading row align-items-center mb-2">
@@ -177,9 +175,9 @@
                             </section><!--//project-section-->
                         </div><!--//resume-main-->
                         <aside class="resume-aside col-12 col-lg-4 col-xl-28 pb-lg-4">
-                            <section class="education-section py-3">
+                            <section id="education" class="education-section py-3">
                                 <h3 class="text-uppercase resume-section-heading mb-4">Education</h3>
-                                <ul class="list-unstyled resume-education-list">
+                                <ul id="education-list" class="list-unstyled resume-education-list">
                                     <li class="mb-3">
                                         <div class="resume-degree font-weight-bold">BSc in Computer Science</div>
                                         <div class="resume-degree-org text-muted">University of British Columbia</div>
@@ -199,99 +197,21 @@
                             </section><!--//education-section-->
                             <section class="skills-section py-3">
                                 <div class="item">
-                                    <h3 class="text-uppercase resume-section-heading mb-4">Skills</h3>
-                                    <h4 class="item-title">Technical</h4>
-                                    <ul class="list-unstyled resume-skills-list">
-                                        <li class="mb-2">
-                                            <div class="resume-skill-name">C++</div>
-                                            <div class="progress resume-progress">
-                                                <div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 90%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </li>
-                                        <li class="mb-2">
-                                            <div class="resume-skill-name">Java</div>
-                                            <div class="progress resume-progress">
-                                                <div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 88%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </li>
-                                        <li class="mb-2">
-                                            <div class="resume-skill-name">Git</div>
-                                            <div class="progress resume-progress">
-                                                <div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 95%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </li>
-                                        <li class="mb-2">
-                                            <div class="resume-skill-name">Linux/Windows</div>
-                                            <div class="progress resume-progress">
-                                                <div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 75%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </li>
-                                        <li class="mb-2">
-                                            <div class="resume-skill-name">Bash</div>
-                                            <div class="progress resume-progress">
-                                                <div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 72%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </li>
-                                        <li class="mb-2">
-                                            <div class="resume-skill-name">Lua</div>
-                                            <div class="progress resume-progress">
-                                                <div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 70%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </li>
-                                        <li class="mb-2">
-                                            <div class="resume-skill-name">SQL</div>
-                                            <div class="progress resume-progress">
-                                                <div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 65%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </li>
-                                        <li class="mb-2">
-                                            <div class="resume-skill-name">PHP/JavaScript</div>
-                                            <div class="progress resume-progress">
-                                                <div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 60%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </li>
-                                        <li class="mb-2">
-                                            <div class="resume-skill-name">R/Julia</div>
-                                            <div class="progress resume-progress">
-                                                <div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 55%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </li>
-                                        <li class="mb-2">
-                                            <div class="resume-skill-name">C#</div>
-                                            <div class="progress resume-progress">
-                                                <div class="progress-bar theme-progress-bar-dark" role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                    <h3 class="text-uppercase resume-section-heading mb-4">Technical Skills</h3>
+                                    <ul id="tech-skills" class="list-unstyled resume-skills-list" ></ul>
                                 </div><!--//item-->
+                            </section>
+                            <section class="skills-section py-3">
                                 <div class="item">
-                                    <h3 class="item-title font-weight-bold">Soft</h3>
+                                    <h3 class="text-uppercase resume-section-heading mb-4">Soft Skills</h3>
+                                    <ul id="soft-skills" class="list-inline"></ul>
                                 </div><!--//item-->
-                                <ul class="list-inline">
-                                    <li class="list-inline-item"><span class="badge badge-light">Teamwork</span></li>
-                                    <li class="list-inline-item"><span class="badge badge-light">Empathy</span></li>
-                                    <li class="list-inline-item"><span class="badge badge-light">Detail-Oriented</span></li>
-                                    <li class="list-inline-item"><span class="badge badge-light">Creativity</span></li>
-                                    <li class="list-inline-item"><span class="badge badge-light">Leadership</span></li>
-                                    <li class="list-inline-item"><span class="badge badge-light">Adaptability</span></li>
-                                </ul>
                             </section><!--//skills-section-->
-                                    
                             <section class="skills-section py-3">
                                 <h3 class="text-uppercase resume-section-heading mb-4">Interests</h3>
-                                <ul class="list-inline">
-                                    <li class="list-inline-item"><span class="badge badge-light">scripting</span></li>
-                                    <li class="list-inline-item"><span class="badge badge-light">devops</span></li>
-                                    <li class="list-inline-item"><span class="badge badge-light">game dev</span></li>
-                                    <li class="list-inline-item"><span class="badge badge-light">memory hacking</span></li>
-                                    <li class="list-inline-item"><span class="badge badge-light">team games</span></li>
-                                    <li class="list-inline-item"><span class="badge badge-light">machine learning</span></li>
-                                    <li class="list-inline-item"><span class="badge badge-light">data science</span></li>
-                                    <li class="list-inline-item"><span class="badge badge-light">blockchain</span></li>
-                                    <li class="list-inline-item"><span class="badge badge-light">d&d world building</span></li>
-                                </ul>
+                                <ul id="interests" class="list-inline"></ul>
                             </section><!--//certificates-section-->
-                                    
+
                         </aside><!--//resume-aside-->
                     </div><!--//row-->
                 </div><!--//resume-body-->
@@ -306,9 +226,9 @@
         </div><!--//container-->
         <footer class="footer text-center py-4 noprint">
             <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
-            <small class="copyright text-muted">Designed with <i class="fas fa-heart"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers, and revised by Josh Cooper.</small>
+            <small class="copyright text-muted">Designed with <i class="fas fa-heart"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers.</br> Heavily modified by Josh Cooper.</small>
         </footer>
     </div><!--//main-wrapper-->
+    <script src="content.js"></script>
 </body>
-</html> 
-
+</html>
