@@ -17,7 +17,7 @@ const technical_skills = [
     'CUDA',
 ];
 const soft_skills = ['Teamwork', 'Empathy', 'Detail-Oriented', 'Creativity', 'Leadership', 'Adaptability'];
-const interests = ['Leadership', 'devops', 'game dev', 'memory hacking', 'team games', 'machine learning', 'data science', 'blockchain', 'd&d world building'];
+const interests = ['scripting', 'devops', 'game dev', 'memory hacking', 'team games', 'machine learning', 'data science', 'blockchain', 'd&d world building'];
 technical_skills.forEach(InsertTechnicalSkills);
 soft_skills.forEach(InsertSoftSkills);
 interests.forEach(InsertInterests);
