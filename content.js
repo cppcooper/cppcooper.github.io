@@ -1,23 +1,42 @@
 const technical_skills = [
     'C++',
     'Java',
-    'git',
-    'Linux',
-    'Windows',
+    'Git',
     'UE4',
     'Bash',
-    'Lua',
     'SQL',
     'PHP',
     'JavaScript',
     'R',
+    'Lua',
     'Julia',
     'C#',
     'OpenGL',
     'CUDA',
+    'Windows',
+    'Linux',
 ];
-const soft_skills = ['Teamwork', 'Empathy', 'Detail-Oriented', 'Creativity', 'Leadership', 'Adaptability'];
-const interests = ['scripting', 'devops', 'game dev', 'memory hacking', 'team games', 'machine learning', 'data science', 'blockchain', 'd&d world building'];
+const soft_skills = [
+    'Teamwork',
+    'Empathy',
+    'Detail-Oriented',
+    'Creativity',
+    'Leadership',
+    'Adaptability'
+];
+const interests = [
+    'Hiking',
+    'D&D',
+    'Team Games',
+    'Game Dev',
+    'Bicycles',
+    'Scripting',
+    'Memory Hacking',
+    'DevOps',
+    'Machine Learning',
+    'Blockchain',
+    'Data Science',
+];
 technical_skills.forEach(InsertTechnicalSkills);
 soft_skills.forEach(InsertSoftSkills);
 interests.forEach(InsertInterests);
