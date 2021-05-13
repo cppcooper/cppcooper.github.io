@@ -152,7 +152,10 @@ const projects = [
             "Systems Architecture"
         ],
         "(<s>Group</s> Project, School)",
-        "The aptly named <a href=\"https://github.com/cppcooper/game-of-the-amazons-ai\">Game Of The Amazons AI</a> was an AI project for a university class competition where team AI competed for bragging rights, I managed to place in the ranking but didn't achieve first. While intended as a group project for 3-5 people, I wrote the entire codebase for my team. The only real sticky point of development was understanding papers written about evaluating game positions. After the class was over I refactored the project from a client with a server to just a regular offline application."
+        "The aptly named <a href=\"https://github.com/cppcooper/game-of-the-amazons-ai\">Game Of The Amazons AI</a> was an AI project for a university class competition where teams competed for bragging rights." +
+        " While intended as a group project for 3-5 people, I wrote the entire codebase for my team and still managed to place in the rankings even with hardware issues causing matches to be lost. " +
+        "The only real sticky point of development was understanding papers written about evaluating game positions." +
+        "After the class was over I refactored the project from a client with a server to just a regular offline application."
     ),
     new ProjectEntry(
         "DFHack",
@@ -165,7 +168,8 @@ const projects = [
             "Procedural Programming"
         ],
         "(Github Community)",
-        "<a href=\"https://github.com/DFHack/dfhack#readme\">DFHack</a> is an API and reverse engineering effort for <a href=\"https://www.bay12games.com/dwarves/\">Dwarf Fortress</a>, ie. a world simulator & story generator. I contribute <a href=\"https://github.com/cppcooper/dfhack-scripts\">scripts</a> for modifying citizens and livestock, as well as a <a href=\"https://github.com/cppcooper/dfhack\">plugin</a> for exposing the C++11 random library's functionality to lua scripts."
+        "<a href=\"https://github.com/DFHack/dfhack#readme\">DFHack</a> is an API and reverse engineering effort for <a href=\"https://www.bay12games.com/dwarves/\">Dwarf Fortress</a>, ie. a world simulator & story generator. " +
+        "I contribute <a href=\"https://github.com/cppcooper/dfhack-scripts\">scripts</a> for modifying citizens and livestock, as well as a <a href=\"https://github.com/cppcooper/dfhack\">plugin</a> for exposing the C++11 random library's functionality to lua scripts."
         ),
     new ProjectEntry(
         "Indra's Net",
@@ -180,7 +184,8 @@ const projects = [
             "Systems Architecture"
         ],
         "(UBCO - Psych. Dept.)",
-        "<a href=\"https://people.ok.ubc.ca/lgabora/IN.html\">Indra's Net</a> is the brain child of Dr. Liane Gabora. It is a tool for visualizing psychology and is intended for patient use. I took on all development challenges from drafting technical specifications up to testing and debugging."
+        "<a href=\"https://people.ok.ubc.ca/lgabora/IN.html\">Indra's Net</a> is the brain child of Dr. Liane Gabora. " +
+        "It is a tool for visualizing psychology and is intended for patient use. I took on all development challenges from drafting technical specifications up to testing and debugging."
     ),
     new ProjectEntry(
         "Chat Bot",
@@ -196,7 +201,8 @@ const projects = [
             "Agile:Scrum/XP"
         ],
         "(Group Project, School)",
-        "<a href=\"https://bitbucket.org/walking-fire-monkeys/unicorn-burrito/src/master/\">Unicorn Burrito</a> was a chat bot project for a university class. As a group project about project management and team coordination we decided to overreach for the development aspects and attempted an open domain conversational chat bot using neural networks. We named it in homage to <a href=\"https://timecube.2enp.com/\">time cube theory</a>."
+        "<a href=\"https://bitbucket.org/walking-fire-monkeys/unicorn-burrito/src/master/\">Unicorn Burrito</a> was a chat bot project for a university class. " +
+        "As a group project about project management and team coordination we decided to overreach for the development aspects and attempted an open domain conversational chat bot using neural networks. We named it in homage to <a href=\"https://timecube.2enp.com/\">time cube theory</a>."
     ),
     new ProjectEntry(
         "Heavy Gear Assault",
@@ -211,7 +217,8 @@ const projects = [
             "Agile:Scrum"
         ],
         "(Stompy Bot Corp.)",
-        "<a href=\"https://store.steampowered.com/app/416020/Heavy_Gear_Assault/\">Heavy Gear Assault</a> is an online competitive first person shooter with mechanized infantry for players to 'pilot'. I was responsible for designing and implementing a more robust AI for the game's bots to use. I used a relatively simple model which made use of some heuristic stats based on human reaction times in order to give the bots a skill level and a natural appearance."
+        "<a href=\"https://store.steampowered.com/app/416020/Heavy_Gear_Assault/\">Heavy Gear Assault</a> is an online competitive first person shooter with mechanized infantry for players to 'pilot'. " +
+        "I was responsible for designing and implementing a more robust AI for the game's bots to use. I used a relatively simple model which made use of some heuristic stats based on human reaction times in order to give the bots a skill level and a natural appearance."
     ),
     new ProjectEntry(
         "Sabotage",
@@ -239,7 +246,10 @@ const projects = [
             "Systems Architecture"
         ],
         "(Solo Project, Personal)",
-        "Cheryl Engine was an OpenGL game engine forked from <a href=\"https://github.com/Gibgezr/blit3d\">Blit3D</a>. I learned many lessons about OpenGL and systems architecture by working on the, now abandoned, engine. Development halted mid-upgrade during improvements to the logging in which I set out to support multi-platform stacktracing as this was the only portion unable to support multi-platform builds. By modifying some assembly code in the <a href=\"https://github.com/cppcooper/stackwalker-multi-plat\">StackWalker</a> library I was able to support most builds, but I couldn't backtrace the stack on x86 gcc windows builds."
+        "Cheryl Engine was an OpenGL game engine forked from <a href=\"https://github.com/Gibgezr/blit3d\">Blit3D</a>. " +
+        "I learned many lessons about OpenGL and systems architecture by working on the, now abandoned, engine. " +
+        "Development halted mid-upgrade during improvements to the logging in which I set out to support multi-platform stacktracing as this was the only portion unable to support multi-platform builds. " +
+        "By modifying some assembly code in the <a href=\"https://github.com/cppcooper/stackwalker-multi-plat\">StackWalker</a> library I was able to support most builds, but I couldn't backtrace the stack on x86 gcc windows builds."
     )
 ];
 
