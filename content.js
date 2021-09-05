@@ -138,6 +138,7 @@ const interests = [
     'Machine Learning',
     'Blockchain',
     'Data Science',
+    'Storytelling',
 ];
 
 const projects = [
@@ -169,7 +170,7 @@ const projects = [
         ],
         "(Github Community)",
         "<a href=\"https://github.com/DFHack/dfhack#readme\">DFHack</a> is an API and reverse engineering effort for <a href=\"https://www.bay12games.com/dwarves/\">Dwarf Fortress</a>, ie. a world simulator & story generator. " +
-        "I contribute <a href=\"https://github.com/cppcooper/dfhack-scripts\">scripts</a> for modifying citizens and livestock, as well as a <a href=\"https://github.com/cppcooper/dfhack\">plugin</a> for exposing the C++11 random library's functionality to lua scripts."
+        "I've contributed several robust <a href=\"https://github.com/cppcooper/dfhack-scripts\">scripts</a> for modifying citizens/livestock and even a development script for searching data structures. Additionally there are a few <a href=\"https://github.com/cppcooper/dfhack\">plugins</a> (cxxrandom, channel-safely, spectate), and recently a refactor to the core event system."
         ),
     new ProjectEntry(
         "Indra's Net",
