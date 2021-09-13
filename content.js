@@ -129,16 +129,16 @@ const soft_skills = [
 const interests = [
     'Hiking',
     'D&D',
+    'Storytelling',
+    'Bicycles',
     'Team Games',
     'Game Dev',
-    'Bicycles',
     'Scripting',
-    'Memory Hacking',
     'DevOps',
+    'Memory Hacking',
+    'Data Science',
     'Machine Learning',
     'Blockchain',
-    'Data Science',
-    'Storytelling',
 ];
 
 const projects = [
