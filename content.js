@@ -136,6 +136,7 @@ const interests = [
     'Scripting',
     'DevOps',
     'Memory Hacking',
+    'Modding',
     'Data Science',
     'Machine Learning',
     'Blockchain',
