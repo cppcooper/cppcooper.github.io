@@ -143,6 +143,23 @@ const interests = [
 ];
 
 const projects = [
+    // new ProjectEntry(
+    //     "BCCF Data Pipeline",
+    //     "Open Source",
+    //     "2021 - 2022",
+    //     [
+    //         "C++",
+    //         "CMake",
+    //         "Systems Architecture",
+    //         "Dicom Parsing",
+    //         "Unit Testing",
+    //         "Orthanc",
+    //         "Docker",
+    //         "CI"
+    //     ],
+    //     "(Capstone Project)",
+    //     ""
+    //     ),
     new ProjectEntry(
         "Amazons-AI",
         "Open Source",
@@ -150,6 +167,7 @@ const projects = [
         [
             "Java",
             "AI",
+            "Parallel",
             "Client/Server",
             "Systems Architecture"
         ],
