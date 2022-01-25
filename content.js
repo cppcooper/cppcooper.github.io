@@ -55,10 +55,10 @@ class ProjectEntry {
         item +=     '<div class="item-meta col-12 col-md-6 col-lg-8 text-muted text-left text-md-right">';
         item +=         this.source + ' | ' + this.date_range;
         item +=     '</div>';
-        item +=     '<div class="item-meta col-12 col-md-6 col-lg-9 text-muted text-left">';
+        item +=     '<div class="item-meta col-12 col-md-6 col-lg-9 text-muted text-left" style="height: 48px">';
         item +=         this.get_tags();
         item +=     '</div>'
-        item +=     '<div class="item-meta col-12 col-md-6 col-lg-3 text-muted text-left text-md-right">';
+        item +=     '<div class="item-meta col-12 col-md-6 col-lg-3 text-muted text-left text-md-right" style="vertical-align: text-top; height: 48px">';
         item +=         this.org_details;
         item +=     '</div>' +
                 '</div>';
@@ -143,23 +143,24 @@ const interests = [
 ];
 
 const projects = [
-    // new ProjectEntry(
-    //     "BCCF Data Pipeline",
-    //     "Open Source",
-    //     "2021 - 2022",
-    //     [
-    //         "C++",
-    //         "CMake",
-    //         "Systems Architecture",
-    //         "Dicom Parsing",
-    //         "Unit Testing",
-    //         "Orthanc",
-    //         "Docker",
-    //         "CI"
-    //     ],
-    //     "(Capstone Project)",
-    //     ""
-    //     ),
+    new ProjectEntry(
+        "BCCF Data Pipeline",
+        "Open Source",
+        "2021 - 2022",
+        [
+            "C++",
+            "CMake",
+            "Systems Architecture",
+            "Dicom Parsing",
+            "Unit Testing",
+            "Orthanc",
+            "Docker",
+            "CI"
+        ],
+        "(Capstone Project)",
+        "This data pipeline is a tool developed for the British Columbia Cancer Foundation as a way of anonymizing patient images before use in research. These images utilize the DICOM standard which specifies how to read and write such files. " +
+        "Aside from image data, DICOM files contain loads of other information such as patient name, age, etc. This data needs to be scrubbed out of the file before it can be used for deep learning or other research."
+        ),
     new ProjectEntry(
         "Amazons-AI",
         "Open Source",
