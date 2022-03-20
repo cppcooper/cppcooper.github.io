@@ -105,6 +105,7 @@ const technical_skills = [
     'Git',
     "UML",
     'UE4',
+    'CMake',
     'SQL',
     'PHP',
     'JavaScript',
