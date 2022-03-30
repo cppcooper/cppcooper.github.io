@@ -276,6 +276,12 @@ const projects = [
 ];
 
 const experience = [
+    /*new ExperienceEntry(
+        "IT Specialist",
+        "Turtle Bay IT Services",
+        "2022.03 - Present",
+        ""
+    ),*/
     new ExperienceEntry(
         "Software Engineer",
         "UBCO",
