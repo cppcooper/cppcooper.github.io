@@ -304,7 +304,7 @@ const experience = [
         "Technical Support Specialist",
         "Research In Motion",
         "2011.07 - 2012.08",
-        "Helped hundreds of customers as part of BlackBerry's highest tier of technical support for handhelds and desktop software."
+        "Helped thousands of customers as part of BlackBerry's highest tier of technical support for handhelds and desktop software."
     )
 ]
 
