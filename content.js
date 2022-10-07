@@ -168,8 +168,8 @@ const projects = [
             "CI"
         ],
         "(Capstone Project)",
-        "This data pipeline is a tool developed for the British Columbia Cancer Foundation as a way of anonymizing patient images before use in research. These images utilize the DICOM standard which specifies how to read and write such files. " +
-        "Aside from image data, DICOM files contain loads of other information such as patient name, age, etc. This data needs to be scrubbed out of the file before it can be used for deep learning or other research."
+        "This <a href=\"https://github.com/cppcooper/data-anonymizer\">data pipeline</a> is a tool developed for the <a href='https://bccancerfoundation.com/about-us/'>British Columbia Cancer Foundation</a> as a way of anonymizing patient images before use in research. These images utilize the DICOM standard which specifies how to read and write such files. " +
+        "Aside from image data, <a href='https://dicom.nema.org/medical/dicom/current/output/chtml/part10/chapter_7.html'>DICOM files</a> contain <a href='https://www.dicomlibrary.com/dicom/dicom-tags/'>loads of other information</a> such as patient name, age, etc. This data needs to be scrubbed out of the file before it can be used for deep learning or other research."
         ),
     new ProjectEntry(
         "Amazons-AI",
