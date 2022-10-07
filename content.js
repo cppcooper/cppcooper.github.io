@@ -33,21 +33,30 @@ class ProjectEntry {
         this.org_details = org_details;
         this.writeup = writeup;
     }
+    add_tag_badges(){
+        let badges;
+        badges = '<ul id="' + this.name.replace(/\s+/g, '-').toLowerCase() + '-tag-badges" class="list-unstyled list-inline">';
+        //todo: make clickable?
+        for (var i = 0; i < this.tags.length; i++) {
+            badges += MakeListEntry(this.tags[i], "list-inline-item", "badge badge-light");
+        }
+        badges += "</ul>"
+        //todo: display selected badges with badge-dark
+        //todo: save all tags into a master list
+        return badges;
+    }
     get_tags(){
         let tags;
-        tags = "";
+        tags = " ";
         for (var i = 0; i < this.tags.length; i++) {
-            if (i != 0){
-                tags += ', ';
-            }
-            tags += this.tags[i];
+            tags += 'tag-' + this.tags[i].replace(/\s+/g, '-').toLowerCase() + " ";
         }
         return tags;
     }
     make_item(){
         let item;
         item =
-            '<div class="item mb-3">' +
+            '<div class="item mb-3 ' + this.get_tags() + '">' +
                 '<div class="item-heading row align-items-center mb-2">' +
                     '<h4 class="item-title col-12 col-md-6 col-lg-4 mb-2 mb-md-0">';
         item +=         this.name;
@@ -55,11 +64,11 @@ class ProjectEntry {
         item +=     '<div class="item-meta col-12 col-md-6 col-lg-8 text-muted text-left text-md-right">';
         item +=         this.source + ' | ' + this.date_range;
         item +=     '</div>';
-        item +=     '<div class="item-meta col-12 col-md-6 col-lg-9 text-muted text-left" style="height: 48px">';
-        item +=         this.get_tags();
-        item +=     '</div>'
-        item +=     '<div class="item-meta col-12 col-md-6 col-lg-3 text-muted text-left text-md-right" style="vertical-align: text-top; height: 48px">';
-        item +=         this.org_details;
+        //item +=     '<div class="item-meta col-12 col-md-6 col-lg-9 text-muted text-left" style="height: 48px">';
+        //item +=     '</div>'
+        item +=     '<div class="row mt-1 ml-0" style="flex: 0 0 100.5%; max-width: 100.5%">';
+        item +=       '<div class="col-9">' + this.add_tag_badges() + '</div>';
+        item +=       '<div class="item-meta col-3 text-muted text-left text-md-right">' + this.org_details + "</div>";
         item +=     '</div>' +
                 '</div>';
         item += '<div class="item-content">';
