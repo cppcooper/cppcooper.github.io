@@ -57,8 +57,8 @@ class ProjectEntry {
         let item;
         item =
             '<div class="item mb-3 ' + this.get_tags() + '">' +
-                '<div class="item-heading row align-items-center mb-2">' +
-                    '<h4 class="item-title col-12 col-md-6 col-lg-4 mb-2 mb-md-0">';
+                '<div class="item-heading row align-items-center mb-0">' +
+                    '<h4 class="item-title col-12 col-md-6 col-lg-4 mb-md-0">';
         item +=         this.name;
         item +=     '</h4>';
         item +=     '<div class="item-meta col-12 col-md-6 col-lg-8 text-muted text-left text-md-right">';
@@ -66,7 +66,7 @@ class ProjectEntry {
         item +=     '</div>';
         //item +=     '<div class="item-meta col-12 col-md-6 col-lg-9 text-muted text-left" style="height: 48px">';
         //item +=     '</div>'
-        item +=     '<div class="row mt-1 ml-0" style="flex: 0 0 100.5%; max-width: 100.5%">';
+        item +=     '<div class="row mt-1 ml-0 mb-0" style="flex: 0 0 100.5%; max-width: 100.5%">';
         item +=       '<div class="col-9">' + this.add_tag_badges() + '</div>';
         item +=       '<div class="item-meta col-3 text-muted text-left text-md-right">' + this.org_details + "</div>";
         item +=     '</div>' +
