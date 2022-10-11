@@ -194,7 +194,7 @@ const projects_list = [
             "C++",
             "CMake",
             "Systems Architecture",
-            "Dicom Parsing",
+            "DICOM Parsing",
             "Unit Testing",
             "Orthanc",
             "Docker",
@@ -227,13 +227,15 @@ const projects_list = [
         "2017 - Present",
         [
             "C++",
+            "CMake",
+            "CI",
             "Lua",
             "RNG",
             "Procedural Programming"
         ],
         "(Github Community)",
         "<a href=\"https://github.com/DFHack/dfhack#readme\">DFHack</a> is an API and reverse engineering effort for <a href=\"https://www.bay12games.com/dwarves/\">Dwarf Fortress</a>, ie. a world simulator & story generator. " +
-        "I've contributed several robust <a href=\"https://github.com/cppcooper/dfhack-scripts\">scripts</a> for modifying citizens/livestock and even a development script for searching data structures. Additionally there are a few <a href=\"https://github.com/cppcooper/dfhack\">plugins</a> (cxxrandom, channel-safely, spectate), and recently a refactor to the core event system."
+        "I've contributed several robust <a href=\"https://github.com/cppcooper/dfhack-scripts\">scripts</a> for modifying citizens/livestock and even a development script for searching data structures. Additionally, there are a few <a href=\"https://github.com/cppcooper/dfhack\">plugins</a> (cxxrandom, channel-safely, spectate), and recently a refactor to the core event system."
         ),
     new ProjectEntry(
         "Indra's Net",
@@ -265,7 +267,7 @@ const projects_list = [
             "Agile:Scrum/XP"
         ],
         "(Group Project, School)",
-        "<a href=\"https://bitbucket.org/walking-fire-monkeys/unicorn-burrito/src/master/\">Unicorn Burrito</a> was a chat bot project for a university class. " +
+        "<a href=\"https://bitbucket.org/walking-fire-monkeys/unicorn-burrito/src/master/\">Unicorn Burrito</a> was a chatbot project for a university class. " +
         "As a group project about project management and team coordination we decided to overreach for the development aspects and attempted an open domain conversational chat bot using neural networks. We named it in homage to <a href=\"https://timecube.2enp.com/\">time cube theory</a>."
     ),
     new ProjectEntry(
@@ -281,7 +283,7 @@ const projects_list = [
             "Agile:Scrum"
         ],
         "(Stompy Bot Corp.)",
-        "<a href=\"https://store.steampowered.com/app/416020/Heavy_Gear_Assault/\">Heavy Gear Assault</a> is an online competitive first person shooter with mechanized infantry for players to 'pilot'. " +
+        "<a href=\"https://store.steampowered.com/app/416020/Heavy_Gear_Assault/\">Heavy Gear Assault</a> is an online competitive first-person shooter with mechanized infantry for players to 'pilot'. " +
         "I was responsible for designing and implementing a more robust AI for the game's bots to use. I used a relatively simple model which made use of some heuristic stats based on human reaction times in order to give the bots a skill level and a natural appearance."
     ),
     new ProjectEntry(
