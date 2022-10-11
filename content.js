@@ -92,31 +92,37 @@ class ProjectEntry {
 function InsertListEntry(id,entryHTML){
     document.getElementById(id).innerHTML += entryHTML;
 }
-function MakeListEntry(item,list_attributes,span_attributes){
-    return '<li class="' + list_attributes +'"><span class="' + span_attributes + '">' + item + '</span></li>';
+function MakeListEntry(item,list_attributes,span_attributes,span_extra_styles){
+    return `<li class="${list_attributes}"><span class="${span_attributes}" style="${span_extra_styles}">${item}</span></li>`;
 }
 function MakeFieldEntry(base_id, item){
     id = `${base_id}-${item.replace(/\W/g, '_').toLowerCase()}`;
     id = id.replace()
     html = `<div class="list-inline-item">`;
-    html += `<input class="badge" type="checkbox" id="${id}-checkbox" name="tag-filters" value="${item}" />`;
-    html += `<span id="${id}-checkbox-badge" class="badge badge-light">`;
+    html += `<input class="badge hvr-fade" type="checkbox" id="${id}-checkbox" name="tag-filters" value="${item}" />`;
+    html += `<span id="${id}-checkbox-badge" class="badge badge-light" style="outline: #0a0a0a;outline-style: solid; outline-width: 1.9px">`;
     html += `<label class="mb-0" for=${id}-checkbox>${item}</label>`;
     html += "</span></div>";
     return html;
 }
 function InsertTechnicalSkills(item){
-     let new_entry = MakeListEntry(item,"list-inline-item","badge badge-dark");
+     let new_entry = MakeListEntry(item,
+         "list-inline-item",
+         "badge badge-tech");
      InsertListEntry("tech-skills",new_entry);
 }
 
 function InsertSoftSkills(item){
-    let new_entry = MakeListEntry(item,"list-inline-item","badge badge-light");
+    let new_entry = MakeListEntry(item,
+        "list-inline-item",
+        "badge badge-soft");
     InsertListEntry("soft-skills",new_entry);
 }
 
 function InsertInterests(item){
-    let new_entry = MakeListEntry(item,"list-inline-item","badge badge-light");
+    let new_entry = MakeListEntry(item,
+        "list-inline-item",
+        "badge badge-hobbies");
     InsertListEntry("interests",new_entry);
 }
 
