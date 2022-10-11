@@ -33,6 +33,16 @@ class ProjectEntry {
         this.org_details = org_details;
         this.writeup = writeup;
     }
+    add_tag_input_badges(){
+        let badges;
+        let base_id = this.name.replace(/\W+/g, '_').toLowerCase();
+        badges = '<fieldset>';
+        for (var i = 0; i < this.tags.length; i++) {
+            badges += MakeFieldEntry(base_id,this.tags[i]);
+        }
+        badges += "</fieldset>"
+        return badges;
+    }
     add_tag_badges(){
         let badges;
         badges = '<ul id="' + this.name.replace(/\s+/g, '-').toLowerCase() + '-tag-badges" class="list-unstyled list-inline">';
@@ -67,7 +77,7 @@ class ProjectEntry {
         //item +=     '<div class="item-meta col-12 col-md-6 col-lg-9 text-muted text-left" style="height: 48px">';
         //item +=     '</div>'
         item +=     '<div class="row mt-1 ml-0 mb-0" style="flex: 0 0 100.5%; max-width: 100.5%">';
-        item +=       '<div class="col-9">' + this.add_tag_badges() + '</div>';
+        item +=       '<div class="col-9">' + this.add_tag_input_badges() + '</div>';
         item +=       '<div class="item-meta col-3 text-muted text-left text-md-right">' + this.org_details + "</div>";
         item +=     '</div>' +
                 '</div>';
@@ -85,6 +95,16 @@ function InsertListEntry(id,entryHTML){
 function MakeListEntry(item,list_attributes,span_attributes){
     return '<li class="' + list_attributes +'"><span class="' + span_attributes + '">' + item + '</span></li>';
 }
+function MakeFieldEntry(base_id, item){
+    id = `${base_id}-${item.replace(/\W/g, '_').toLowerCase()}`;
+    id = id.replace()
+    html = `<div class="list-inline-item">`;
+    html += `<input class="badge" type="checkbox" id="${id}-checkbox" name="tag-filters" value="${item}" />`;
+    html += `<span id="${id}-checkbox-badge" class="badge badge-light">`;
+    html += `<label class="mb-0" for=${id}-checkbox>${item}</label>`;
+    html += "</span></div>";
+    return html;
+}
 function InsertTechnicalSkills(item){
      let new_entry = MakeListEntry(item,"list-inline-item","badge badge-dark");
      InsertListEntry("tech-skills",new_entry);
@@ -100,13 +120,20 @@ function InsertInterests(item){
     InsertListEntry("interests",new_entry);
 }
 
-function InsertProjects(item){
-    InsertListEntry("projects", item.make_item());
+function InsertProjects(item) {
+    if (enabledSettings.length == 0) {
+        InsertListEntry("projects", item.make_item());
+    } else if (item.tags.some(r => enabledSettings.includes(r))) {
+        InsertListEntry("projects", item.make_item());
+    }
 }
 
 function InsertExperience(item){
     InsertListEntry("experience", item.make_item());
 }
+
+let enabledSettings=[];
+
 
 const technical_skills = [
     'C++',
@@ -152,7 +179,7 @@ const interests = [
     'Blockchain',
 ];
 
-const projects = [
+const projects_list = [
     new ProjectEntry(
         "BCCF Data Pipeline",
         "Open Source",
@@ -320,5 +347,6 @@ const experience = [
 technical_skills.forEach(InsertTechnicalSkills);
 soft_skills.forEach(InsertSoftSkills);
 interests.forEach(InsertInterests);
-projects.forEach(InsertProjects);
+projects_list.forEach(InsertProjects);
 experience.forEach(InsertExperience);
+
