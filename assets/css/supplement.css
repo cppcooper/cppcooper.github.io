@@ -81,3 +81,23 @@ progress {
 .badge {
   font-size: 85%!important;
 }
+
+fieldset span.badge:hover {
+  background-color: #2098D1;
+  color: white;
+}
+
+.badge-tech {
+  color: #282828;
+  background-color: #82bec8
+}
+
+.badge-soft {
+  color: #3a3a3a;
+  background-color: #ecce91
+}
+
+.badge-hobbies {
+  color: #212121;
+  background-color: #d59898
+}
