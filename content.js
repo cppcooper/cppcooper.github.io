@@ -187,6 +187,54 @@ const interests = [
 
 const projects_list = [
     new ProjectEntry(
+        "DFHack",
+        "Open Source",
+        "2017 - Present",
+        [
+            "C++",
+            "CMake",
+            "CI",
+            "Lua",
+            "RNG",
+            "Procedural Programming"
+        ],
+        "(Github Community)",
+        "<a href=\"https://github.com/DFHack/dfhack#readme\">DFHack</a> is an API and reverse engineering effort for <a href=\"https://www.bay12games.com/dwarves/\">Dwarf Fortress</a>, ie. a world simulator & story generator. " +
+        "I've contributed several robust <a href=\"https://github.com/cppcooper/dfhack-scripts\">scripts</a> for modifying citizens/livestock and even a development script for searching data structures. Additionally, there are a few <a href=\"https://github.com/cppcooper/dfhack\">plugins</a> (cxxrandom, channel-safely, spectate), and recently a refactor to the core event system."
+    ),
+    new ProjectEntry(
+        "Heavy Gear Assault",
+        "Commercial",
+        "2017",
+        [
+            "UE4",
+            "C++",
+            "AI",
+            "Linear Algebra",
+            "Perforce",
+            "Agile:Scrum"
+        ],
+        "(Stompy Bot Corp.)",
+        "<a href=\"https://store.steampowered.com/app/416020/Heavy_Gear_Assault/\">Heavy Gear Assault</a> is an online competitive first-person shooter with mechanized infantry for players to 'pilot'. " +
+        "I was responsible for designing and implementing a more robust AI for the game's bots to use. I used a relatively simple model which made use of some heuristic stats based on human reaction times in order to give the bots a skill level and a natural appearance."
+    ),
+    new ProjectEntry(
+        "Sabotage",
+        "Commercial",
+        "2016",
+        [
+            "UE4",
+            "C++",
+            "Blueprints",
+            "UI",
+            "DevOps",
+            "Perforce",
+            "Agile:Scrum"
+        ],
+        "(Stompy Bot Corp.)",
+        "Sabotage was a side scrolling stealth shooter based on the book by the same name. A UE4 project destined for consoles and PCs implemented primarily using blueprints. I was primarily responsible for building UMG widgets as well as writing and updating the controllers and pawns."
+    ),
+    new ProjectEntry(
         "BCCF Data Pipeline",
         "Open Source",
         "2021 - 2022",
@@ -203,7 +251,7 @@ const projects_list = [
         "(Capstone Project)",
         "This <a href=\"https://github.com/cppcooper/data-anonymizer\">data pipeline</a> is a tool developed for the <a href='https://bccancerfoundation.com/about-us/'>British Columbia Cancer Foundation</a> as a way of anonymizing patient images before use in research. These images utilize the DICOM standard which specifies how to read and write such files. " +
         "Aside from image data, <a href='https://dicom.nema.org/medical/dicom/current/output/chtml/part10/chapter_7.html'>DICOM files</a> contain <a href='https://www.dicomlibrary.com/dicom/dicom-tags/'>loads of other information</a> such as patient name, age, etc. This data needs to be scrubbed out of the file before it can be used for deep learning or other research."
-        ),
+    ),
     new ProjectEntry(
         "Amazons-AI",
         "Open Source",
@@ -221,22 +269,6 @@ const projects_list = [
         "The only real sticky point of development was understanding papers written about evaluating game positions." +
         "After the class was over I refactored the project from a client with a server to just a regular offline application."
     ),
-    new ProjectEntry(
-        "DFHack",
-        "Open Source",
-        "2017 - Present",
-        [
-            "C++",
-            "CMake",
-            "CI",
-            "Lua",
-            "RNG",
-            "Procedural Programming"
-        ],
-        "(Github Community)",
-        "<a href=\"https://github.com/DFHack/dfhack#readme\">DFHack</a> is an API and reverse engineering effort for <a href=\"https://www.bay12games.com/dwarves/\">Dwarf Fortress</a>, ie. a world simulator & story generator. " +
-        "I've contributed several robust <a href=\"https://github.com/cppcooper/dfhack-scripts\">scripts</a> for modifying citizens/livestock and even a development script for searching data structures. Additionally, there are a few <a href=\"https://github.com/cppcooper/dfhack\">plugins</a> (cxxrandom, channel-safely, spectate), and recently a refactor to the core event system."
-        ),
     new ProjectEntry(
         "Indra's Net",
         "Closed Source",
@@ -269,38 +301,6 @@ const projects_list = [
         "(Group Project, School)",
         "<a href=\"https://bitbucket.org/walking-fire-monkeys/unicorn-burrito/src/master/\">Unicorn Burrito</a> was a chatbot project for a university class. " +
         "As a group project about project management and team coordination we decided to overreach for the development aspects and attempted an open domain conversational chat bot using neural networks. We named it in homage to <a href=\"https://timecube.2enp.com/\">time cube theory</a>."
-    ),
-    new ProjectEntry(
-        "Heavy Gear Assault",
-        "Closed Source",
-        "2017",
-        [
-            "UE4",
-            "C++",
-            "AI",
-            "Linear Algebra",
-            "Perforce",
-            "Agile:Scrum"
-        ],
-        "(Stompy Bot Corp.)",
-        "<a href=\"https://store.steampowered.com/app/416020/Heavy_Gear_Assault/\">Heavy Gear Assault</a> is an online competitive first-person shooter with mechanized infantry for players to 'pilot'. " +
-        "I was responsible for designing and implementing a more robust AI for the game's bots to use. I used a relatively simple model which made use of some heuristic stats based on human reaction times in order to give the bots a skill level and a natural appearance."
-    ),
-    new ProjectEntry(
-        "Sabotage",
-        "Closed Source",
-        "2016",
-        [
-            "UE4",
-            "C++",
-            "Blueprints",
-            "UI",
-            "DevOps",
-            "Perforce",
-            "Agile:Scrum"
-        ],
-        "(Stompy Bot Corp.)",
-        "Sabotage was a side scrolling stealth shooter based on the book by the same name. A UE4 project destined for consoles and PCs implemented primarily using blueprints. I was primarily responsible for building UMG widgets as well as writing and updating the controllers and pawns."
     ),
     new ProjectEntry(
         "Cheryl-Engine",
