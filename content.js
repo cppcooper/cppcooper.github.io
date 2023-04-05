@@ -204,7 +204,7 @@ const projects_list = [
     ),
     new ProjectEntry(
         "Heavy Gear Assault",
-        "Commercial",
+        "Closed Source",
         "2017",
         [
             "UE4",
@@ -220,7 +220,7 @@ const projects_list = [
     ),
     new ProjectEntry(
         "Sabotage",
-        "Commercial",
+        "Closed Source",
         "2016",
         [
             "UE4",
@@ -282,7 +282,7 @@ const projects_list = [
             "Systems Architecture"
         ],
         "(UBCO - Psych. Dept.)",
-        "<a href=\"https://people.ok.ubc.ca/lgabora/IN.html\">Indra's Net</a> is the brain child of Dr. Liane Gabora. " +
+        "<a href=\"https://gabora-psych.ok.ubc.ca/IN.html\">Indra's Net</a> is the brain child of Dr. Liane Gabora. " +
         "It is a tool for visualizing psychology and is intended for patient use. I took on all development challenges from drafting technical specifications up to testing and debugging."
     ),
     new ProjectEntry(
