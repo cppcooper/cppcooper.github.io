@@ -241,7 +241,7 @@ const projects_list = [
         [
             "C++",
             "CMake",
-            "Systems Architecture",
+            "Architecture Design",
             "DICOM Parsing",
             "Unit Testing",
             "Orthanc",
@@ -261,7 +261,7 @@ const projects_list = [
             "AI",
             "Parallel",
             "Client/Server",
-            "Systems Architecture"
+            "Architecture Design"
         ],
         "(<s>Group</s> Project, School)",
         "The aptly named <a href=\"https://github.com/cppcooper/game-of-the-amazons-ai\">Game Of The Amazons AI</a> was an AI project for a university class competition where teams competed for bragging rights." +
@@ -279,7 +279,7 @@ const projects_list = [
             "Blueprints",
             "Physics",
             "Linear Algebra",
-            "Systems Architecture"
+            "Architecture Design"
         ],
         "(UBCO - Psych. Dept.)",
         "<a href=\"https://gabora-psych.ok.ubc.ca/IN.html\">Indra's Net</a> is the brain child of Dr. Liane Gabora. " +
@@ -294,7 +294,7 @@ const projects_list = [
             "C++",
             "NLP",
             "Machine Learning",
-            "Systems Architecture",
+            "Architecture Design",
             "DevOps",
             "Agile:Scrum/XP"
         ],
@@ -309,7 +309,7 @@ const projects_list = [
         [
             "C++",
             "OpenGL",
-            "Systems Architecture"
+            "Architecture Design"
         ],
         "(Solo Project, Personal)",
         "Cheryl Engine was an OpenGL game engine forked from <a href=\"https://github.com/Gibgezr/blit3d\">Blit3D</a>. " +
