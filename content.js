@@ -320,12 +320,12 @@ const projects_list = [
 ];
 
 const experience = [
-    /*new ExperienceEntry(
-        "IT Specialist",
+    new ExperienceEntry(
+        "Associate",
         "Turtle Bay IT Services",
-        "2022.03 - Present",
-        ""
-    ),*/
+        "2022.03 - 2022.09",
+        "Managed remote hosts using ESET, Office 365, and a number of other tools to support small businesses. Performed hardware diagnosis and repairs on Windows and Macs. Helped manage linux virtual servers."
+    ),
     new ExperienceEntry(
         "Software Engineer",
         "UBCO",
