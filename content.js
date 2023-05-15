@@ -187,6 +187,20 @@ const interests = [
 
 const projects_list = [
     new ProjectEntry(
+        "Skyrim Modding",
+        "Open Source",
+        "2023 - Present",
+        [
+            "C++",
+            "Papyrus",
+            "Creation Kit",
+            "SKSE",
+            "CommonLibSSE"
+        ],
+        "(Solo Project, Personal)",
+        "Most recently I've been enjoying diving into Skyrim Modding, and writing scripts in Papyrus and plugins in C++. With 2.4 billion downloads for Skyrim Special Edition the community space has matured quiet a bit over the last decade."
+    ),
+    new ProjectEntry(
         "DFHack",
         "Open Source",
         "2017 - Present",
