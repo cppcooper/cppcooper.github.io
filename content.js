@@ -217,6 +217,22 @@ const projects_list = [
         "I've contributed several robust <a href=\"https://github.com/cppcooper/dfhack-scripts\">scripts</a> for modifying citizens/livestock and even a development script for searching data structures. Additionally, there are a few <a href=\"https://github.com/cppcooper/dfhack\">plugins</a> (cxxrandom, channel-safely, spectate), and recently a refactor to the core event system."
     ),
     new ProjectEntry(
+        "Indra's Net",
+        "Closed Source",
+        "2018 - 2020",
+        [
+            "UE4",
+            "C++",
+            "Blueprints",
+            "Physics",
+            "Linear Algebra",
+            "Architecture Design"
+        ],
+        "(UBCO - Psych. Dept.)",
+        "<a href=\"https://gabora-psych.ok.ubc.ca/IN.html\">Indra's Net</a> is the brain child of Dr. Liane Gabora. " +
+        "It is a tool for visualizing psychology and is intended for patient use. I took on all development challenges from drafting technical specifications up to testing and debugging."
+    ),
+    new ProjectEntry(
         "Heavy Gear Assault",
         "Closed Source",
         "2017",
@@ -282,22 +298,6 @@ const projects_list = [
         " While intended as a group project for 3-5 people, I wrote the entire codebase for my team and still managed to place in the rankings even with hardware issues causing matches to be lost. " +
         "The only real sticky point of development was understanding papers written about evaluating game positions." +
         "After the class was over I refactored the project from a client with a server to just a regular offline application."
-    ),
-    new ProjectEntry(
-        "Indra's Net",
-        "Closed Source",
-        "2018 - 2020",
-        [
-            "UE4",
-            "C++",
-            "Blueprints",
-            "Physics",
-            "Linear Algebra",
-            "Architecture Design"
-        ],
-        "(UBCO - Psych. Dept.)",
-        "<a href=\"https://gabora-psych.ok.ubc.ca/IN.html\">Indra's Net</a> is the brain child of Dr. Liane Gabora. " +
-        "It is a tool for visualizing psychology and is intended for patient use. I took on all development challenges from drafting technical specifications up to testing and debugging."
     ),
     new ProjectEntry(
         "Chat Bot",
