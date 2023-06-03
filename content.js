@@ -198,7 +198,7 @@ const projects_list = [
             "CommonLibSSE"
         ],
         "(Solo Project, Personal)",
-        "Most recently I've been enjoying diving into Skyrim Modding, and writing scripts in Papyrus and plugins in C++. With 2.4 billion downloads for Skyrim Special Edition the community space has matured quiet a bit over the last decade."
+        "Most recently I've been enjoying diving into <a href=\"https://www.nexusmods.com/skyrimspecialedition/users/235189?tab=user+files\">Skyrim Modding</a>, and writing scripts in Papyrus and plugins in C++. With 2.4 billion downloads for Skyrim Special Edition the community space has matured quiet a bit over the last decade."
     ),
     new ProjectEntry(
         "DFHack",
