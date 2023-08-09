@@ -187,50 +187,22 @@ const interests = [
 
 const projects_list = [
     new ProjectEntry(
-        "Skyrim Modding",
+        "BCCF Data Pipeline",
         "Open Source",
-        "2023 - Present",
-        [
-            "C++",
-            "Papyrus",
-            "Creation Kit",
-            "SKSE",
-            "CommonLibSSE"
-        ],
-        "(Solo Project, Personal)",
-        "Most recently I've been enjoying diving into <a href=\"https://www.nexusmods.com/skyrimspecialedition/users/235189?tab=user+files\">Skyrim Modding</a>, and writing scripts in Papyrus and plugins in C++. With 2.4 billion downloads for Skyrim Special Edition the community space has matured quiet a bit over the last decade."
-    ),
-    new ProjectEntry(
-        "DFHack",
-        "Open Source",
-        "2017 - Present",
+        "2021 - 2022",
         [
             "C++",
             "CMake",
-            "CI",
-            "Lua",
-            "RNG",
-            "Procedural Programming"
+            "Architecture Design",
+            "DICOM Parsing",
+            "Unit Testing",
+            "Orthanc",
+            "Docker",
+            "CI"
         ],
-        "(Github Community)",
-        "<a href=\"https://github.com/DFHack/dfhack#readme\">DFHack</a> is an API and reverse engineering effort for <a href=\"https://www.bay12games.com/dwarves/\">Dwarf Fortress</a>, ie. a world simulator & story generator. " +
-        "I've contributed several robust <a href=\"https://github.com/cppcooper/dfhack-scripts\">scripts</a> for modifying citizens/livestock and even a development script for searching data structures. Additionally, there are a few <a href=\"https://github.com/cppcooper/dfhack\">plugins</a> (cxxrandom, channel-safely, spectate), and recently a refactor to the core event system."
-    ),
-    new ProjectEntry(
-        "Indra's Net",
-        "Closed Source",
-        "2018 - 2020",
-        [
-            "UE4",
-            "C++",
-            "Blueprints",
-            "Physics",
-            "Linear Algebra",
-            "Architecture Design"
-        ],
-        "(UBCO - Psych. Dept.)",
-        "<a href=\"https://gabora-psych.ok.ubc.ca/IN.html\">Indra's Net</a> is the brain child of Dr. Liane Gabora. " +
-        "It is a tool for visualizing psychology and is intended for patient use. I took on all development challenges from drafting technical specifications up to testing and debugging."
+        "(Capstone Project)",
+        "This <a href=\"https://github.com/cppcooper/data-anonymizer\">data pipeline</a> is a tool developed for the <a href='https://bccancerfoundation.com/about-us/'>British Columbia Cancer Foundation</a> as a way of anonymizing patient images before use in research. These images utilize the DICOM standard which specifies how to read and write such files. " +
+        "Aside from image data, <a href='https://dicom.nema.org/medical/dicom/current/output/chtml/part10/chapter_7.html'>DICOM files</a> contain <a href='https://www.dicomlibrary.com/dicom/dicom-tags/'>loads of other information</a> such as patient name, age, etc. This data needs to be scrubbed out of the file before it can be used for deep learning or other research."
     ),
     new ProjectEntry(
         "Heavy Gear Assault",
@@ -265,22 +237,50 @@ const projects_list = [
         "Sabotage was a side scrolling stealth shooter based on the book by the same name. A UE4 project destined for consoles and PCs implemented primarily using blueprints. I was primarily responsible for building UMG widgets as well as writing and updating the controllers and pawns."
     ),
     new ProjectEntry(
-        "BCCF Data Pipeline",
+        "Skyrim Modding",
         "Open Source",
-        "2021 - 2022",
+        "2023 - Present",
+        [
+            "C++",
+            "Papyrus",
+            "Creation Kit",
+            "SKSE",
+            "CommonLibSSE"
+        ],
+        "(Solo Project, Personal)",
+        "From fixes to other mods, to a few standalone mods. Including one I'm working on for adding equippable bags linked to chests which I'm calling Bags of Holding. All found on <a href=\"https://www.nexusmods.com/skyrimspecialedition/users/235189?tab=user+files\">NexusMods</a>"
+    ),
+    new ProjectEntry(
+        "DFHack",
+        "Open Source",
+        "2017 - Present",
         [
             "C++",
             "CMake",
-            "Architecture Design",
-            "DICOM Parsing",
-            "Unit Testing",
-            "Orthanc",
-            "Docker",
-            "CI"
+            "CI",
+            "Lua",
+            "RNG",
+            "Procedural Programming"
         ],
-        "(Capstone Project)",
-        "This <a href=\"https://github.com/cppcooper/data-anonymizer\">data pipeline</a> is a tool developed for the <a href='https://bccancerfoundation.com/about-us/'>British Columbia Cancer Foundation</a> as a way of anonymizing patient images before use in research. These images utilize the DICOM standard which specifies how to read and write such files. " +
-        "Aside from image data, <a href='https://dicom.nema.org/medical/dicom/current/output/chtml/part10/chapter_7.html'>DICOM files</a> contain <a href='https://www.dicomlibrary.com/dicom/dicom-tags/'>loads of other information</a> such as patient name, age, etc. This data needs to be scrubbed out of the file before it can be used for deep learning or other research."
+        "(Github Community)",
+        "<a href=\"https://github.com/DFHack/dfhack#readme\">DFHack</a> is an API and reverse engineering effort for <a href=\"https://www.bay12games.com/dwarves/\">Dwarf Fortress</a>, ie. a world simulator & story generator. " +
+        "I've contributed several robust <a href=\"https://github.com/cppcooper/dfhack-scripts\">scripts</a> for modifying citizens/livestock and even a development script for searching data structures. Additionally, there are a few <a href=\"https://github.com/cppcooper/dfhack\">plugins</a> (cxxrandom, channel-safely, spectate), and recently a refactor to the core event system."
+    ),
+    new ProjectEntry(
+        "Indra's Net",
+        "Closed Source",
+        "2018 - 2020",
+        [
+            "UE4",
+            "C++",
+            "Blueprints",
+            "Physics",
+            "Linear Algebra",
+            "Architecture Design"
+        ],
+        "(UBCO - Psych. Dept.)",
+        "<a href=\"https://gabora-psych.ok.ubc.ca/IN.html\">Indra's Net</a> is the brain child of Dr. Liane Gabora. " +
+        "It is a tool for visualizing psychology and is intended for patient use. I took on all development challenges from drafting technical specifications up to testing and debugging."
     ),
     new ProjectEntry(
         "Amazons-AI",
