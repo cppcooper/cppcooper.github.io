@@ -204,8 +204,8 @@ const projects_list = [
         "(Capstone Project)",
         "This <a href=\"https://github.com/cppcooper/Orthanc-filter\">Orthanc filter plugin</a> is a tool developed for the <a href='https://bccancerfoundation.com/about-us/'>British Columbia Cancer Foundation</a>. " +
         "The medical imaging machines used to diagnose cancer create what are known as DICOM images, which are sent to the BCCF for research among other purposes. The <a href='https://dicom.nema.org/medical/dicom/current/output/chtml/part10/chapter_7.html'>DICOM format</a>" +
-        " allows for the encapsulation of many forms of data in addition to the binary image data. Since this information exposes patient identities it needs to be scrubbed from the images before they can be used in research. " +
-        "The plugin, which I wrote for performance and customization, scrubs or redacts any information desired so a Doctor will no longer need to manually scrub the files."
+        " allows for the encapsulation of many forms of data in addition to the binary image data. Some of this information exposes patient identities and needs to be scrubbed from the images before they can be used in research. " +
+        "The plugin, which I wrote for performance and customization, scrubs or redacts any information desired so a Doctor will no longer need to manually scrub each individual file."
     ),
     new ProjectEntry(
         "Heavy Gear Assault",
@@ -239,7 +239,7 @@ const projects_list = [
         ],
         "(Stompy Bot Corp.)",
         "Sabotage was a side scrolling stealth shooter based on the book by the same name. I developed several core systems, such as the player's pawn controller, and various UMG widgets such as a 2D radar on the HUD. " +
-        "After about two months I was transferred to help with development of a larger project."
+        "After about two months I was transferred to help with the development of a larger project."
     ),
     new ProjectEntry(
         "Indra's Net",
@@ -254,9 +254,9 @@ const projects_list = [
             "Software Architecture"
         ],
         "(UBCO - Psych. Dept.)",
-        "<a href=\"https://gabora-psych.ok.ubc.ca/IN.html\">Indra's Net</a> is the brain child of Dr. Liane Gabora. It is a tool for visualizing psychology and is intended for patient use. " +
-        "I developed procedurally generated meshes, a laser system along with the corresponding physics, some very time consuming shader work, and of course some documentation. My contributions to" +
-        " development took place primarily over two consecutive summers with some work parallel to my university course load."
+        "<a href=\"https://gabora-psych.ok.ubc.ca/IN.html\">Indra's Net</a> is a project envisioned and led by Dr. Liane Gabora. The project will be a tool for visualizing psychology and is intended for patient use. " +
+        "My role was in the development of procedurally generated meshes, a laser system along with the corresponding physics, some very time consuming shader work, and of course some documentation. My contributions to" +
+        " development took place primarily over two consecutive summers with some of the work having been parallel to my university course work."
     ),
     new ProjectEntry(
         "Skyrim Modding",
@@ -307,7 +307,7 @@ const projects_list = [
         "(Group Project, School)",
         "<a href=\"https://github.com/cppcooper/game-of-the-amazons-ai\">This AI project</a> was a class competition and intended as a serious challenge due to the game's branching factor. " +
         "The first player in the initial position has 2176 possible moves, which decreases rapidly as moves are played. Our AI ran on an old AMD FX-9590 during the competition, with inadequate cooling, " +
-        "which led to several of our matches being lost due to CPU overheating [crashing]. Despite these challenges I was able to ensure my team placed 5th in the rankings out of about 25 teams."
+        "which led to several of our matches being lost due to CPU overheating [system crashes]. Despite these challenges I was able to ensure my team placed 5th in the rankings out of about 25 teams."
     ),
     new ProjectEntry(
         "Cheryl-Engine",
@@ -321,9 +321,8 @@ const projects_list = [
         "(Solo Project, Personal)",
         "Cheryl Engine was an OpenGL game engine forked from <a href=\"https://github.com/Gibgezr/blit3d\">Blit3D</a>. " +
         "Working on the now abandoned engine I learned many lessons about OpenGL, meta-programming, and software architecture. " +
-        "Development halted mid-upgrade during improvements to the logging in which I set out to support multi-platform stacktracing as this was the only portion unable to support multi-platform builds. " +
-        "The problem was effectively demangling the traces and by modifying some assembly code in the <a href=\"https://github.com/cppcooper/stackwalker-multi-plat\">StackWalker</a> library I was able to"+
-        " support most builds, but was never able to deal with x86 gcc windows builds."
+        "I stopped working on the engine after I modifying some assembly in the <a href=\"https://github.com/cppcooper/stackwalker-multi-plat\">StackWalker</a> library which" +
+        " allowed me to support most builds, but my efforts stopped short of successfully demangling x86 gcc windows builds."
     )
 ];
 
