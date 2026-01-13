@@ -310,20 +310,38 @@ const projects_list = [
         "The first player in the initial position has 2176 possible moves, which decreases rapidly as moves are played. Our AI ran on an old AMD FX-9590 during the competition, with inadequate cooling, " +
         "which led to several of our matches being lost due to CPU overheating [system crashes]. Despite these challenges I was able to ensure my team placed 5th in the rankings out of about 25 teams."
     ),
+    
+    new ProjectEntry(
+        "Fame and Fortune: Hidden Objects",
+        "Closed Source",
+        "2015",
+        [
+            "C#",
+            "UI",
+            "Unity",
+            "Procedural Programming",
+            "Debugging",
+            "Software Architecture"
+        ],
+        "(Gogii Games)",
+        "Worked eight months on a hidden object game released on android and iphone. I implemented mini games for a monetized in-game casino, and " +
+        "chipped away at the bug tracker. A lot of the bugs were just results of architectural consequences, nothing too major. Most problems were where " +
+        "refactoring a core system would be the most elegant solution to a major bug, but unfeasible based on stage of development."
+    ),
+    
     new ProjectEntry(
         "Cheryl-Engine",
         "Open Source",
-        "2013 - 2015",
+        "2013 - Present",
         [
             "C++",
             "OpenGL",
             "Software Architecture"
         ],
         "(Solo Project, Personal)",
-        "Cheryl Engine was an OpenGL game engine forked from <a href=\"https://github.com/Gibgezr/blit3d\">Blit3D</a>. " +
-        "Working on the now abandoned engine I learned many lessons about OpenGL, meta-programming, and software architecture. " +
-        "I stopped working on the engine after I modifying some assembly in the <a href=\"https://github.com/cppcooper/stackwalker-multi-plat\">StackWalker</a> library which" +
-        " allowed me to support most builds, but my efforts stopped short of successfully demangling x86 gcc windows builds."
+        "Cheryl Engine is an OpenGL game engine forked from <a href=\"https://github.com/Gibgezr/blit3d\">Blit3D</a>. " +
+        "I've used this project as a place to passionately practice and learn about OpenGL, meta-programming, and software architecture. " +
+        "There have been a few years I've neglected this project, but I always come back to improve upon the codebase."
     )
 ];
 
