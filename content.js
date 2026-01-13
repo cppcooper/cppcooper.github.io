@@ -130,6 +130,8 @@ function InsertProjects(item) {
     if (enabledSettings.length == 0) {
         InsertListEntry("projects", item.make_item());
     } else if (item.tags.some(r => enabledSettings.includes(r))) {
+        // todo: implement settings to include projects based on tags that are enabled (useful in situations where a particular project isn't useful for an application)
+        // might not be a good way of doing this in the end
         InsertListEntry("projects", item.make_item());
     }
 }
@@ -163,18 +165,17 @@ const technical_skills = [
 ];
 const soft_skills = [
     'Teamwork',
-    'Empathy',
+    'Leadership',
+    'Adaptability',
     'Detail-Oriented',
     'Creativity',
-    'Leadership',
-    'Adaptability'
+    'Empathy'
 ];
 const interests = [
     'Hiking',
     'D&D',
     'Storytelling',
     'Bicycles',
-    'Team Games',
     'Game Dev',
     'Scripting',
     'DevOps',
@@ -183,6 +184,8 @@ const interests = [
     'Data Science',
     'Machine Learning',
     'Blockchain',
+    'Team Games',
+    'Spirituality'
 ];
 
 const projects_list = [
