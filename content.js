@@ -321,7 +321,8 @@ const projects_list = [
             "Unity",
             "Procedural Programming",
             "Debugging",
-            "Software Architecture"
+            "Software Architecture",
+            "Agile: Scrum"
         ],
         "(Gogii Games)",
         "Worked eight months on a hidden object game released on android and iphone. I implemented mini games for a monetized in-game casino, and " +
