@@ -207,7 +207,7 @@ const projects_list = [
         "(Capstone Project)",
         "This <a href=\"https://github.com/cppcooper/Orthanc-filter\">Orthanc filter plugin</a> is a tool developed for the <a href='https://bccancerfoundation.com/about-us/'>British Columbia Cancer Foundation</a>. " +
         "The medical imaging machines used to diagnose cancer create what are known as DICOM images, which are sent to the BCCF for research among other purposes. The <a href='https://dicom.nema.org/medical/dicom/current/output/chtml/part10/chapter_7.html'>DICOM format</a>" +
-        " allows for the encapsulation of many forms of data in addIf you could review my resume before we go any furtherition to the binary image data. Some of this information exposes patient identities and needs to be scrubbed from the images before they can be used in research. " +
+        " allows for the encapsulation of many forms of data in addition to the binary image data. Some of this information exposes patient identities and needs to be scrubbed from the images before they can be used in research. " +
         "The plugin, which I wrote for performance and customization, scrubs or redacts any information desired so a Doctor will no longer need to manually scrub each individual file."
     ),
     new ProjectEntry(
