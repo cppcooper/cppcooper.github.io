@@ -219,7 +219,7 @@ const projects_list = [
             "Perforce",
             "Agile:Scrum"
         ],
-        "(Stompy Bot Corp. - Shipped)",
+        "(Stompy Bot Corp. | Shipped)",
         "<a href=\"https://store.steampowered.com/app/416020/Heavy_Gear_Assault/\">Heavy Gear Assault</a> is an online competitive first-person shooter with mechanized infantry for players to 'pilot'. " +
         "I was tasked with improving the bot AI. To do this I generated reaction times and a few other stats using gaussian distributions to provide the bots more natural behaviours. Though due to the game engine having been" +
         " heavily modified I had trouble synchronizing the interpolation of the bots' targeting system."
@@ -324,7 +324,7 @@ const projects_list = [
             "Software Architecture",
             "Agile: Scrum"
         ],
-        "(Gogii Games - Shipped)",
+        "(Gogii Games | Shipped)",
         "Worked eight months on a hidden object game released on android and iphone. I implemented mini games for a monetized in-game casino, and " +
         "chipped away at the bug tracker. A lot of the bugs were just results of architectural consequences, nothing too major. Most problems were where " +
         "refactoring a core system would be the most elegant solution to a major bug, but unfeasible based on stage of development."
