@@ -337,7 +337,8 @@ const projects_list = [
         [
             "C++",
             "OpenGL",
-            "Software Architecture"
+            "Software Architecture",
+            "Unit Testing"
         ],
         "(Solo Project, Personal)",
         "Cheryl Engine is an OpenGL game engine forked from <a href=\"https://github.com/Gibgezr/blit3d\">Blit3D</a>. " +
