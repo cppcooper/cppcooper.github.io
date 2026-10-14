@@ -20,6 +20,18 @@
     overflow-wrap: anywhere;
 }
 
+.phone-contact {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .25rem;
+}
+
+.phone-contact > svg {
+    flex-shrink: 0;
+}
+
+.phone-reveal,
 #clear-project-filters {
     padding: .25rem .5rem;
     border: 1px solid #398562;
@@ -277,7 +289,8 @@ input:focus-visible + span {
         margin-top: .5rem;
     }
 
-    .resume-profile-image {
+    .resume-profile-image,
+    .phone-reveal {
         display: none;
     }
 
