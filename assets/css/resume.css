@@ -103,6 +103,50 @@ input:focus-visible + span {
     color: #59616a;
 }
 
+.resume-actions {
+    margin: 0 auto 1.5rem;
+    max-width: 40rem;
+    text-align: center;
+}
+
+.resume-action-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: .75rem;
+}
+
+.resume-action-button {
+    padding: .65rem 1rem;
+    border: 1px solid #286348;
+    border-radius: .3rem;
+    background: #fff;
+    color: #286348;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.resume-action-button:hover {
+    background: #edf5f0;
+}
+
+.resume-action-primary {
+    background: #286348;
+    color: #fff;
+}
+
+.resume-action-primary:hover {
+    background: #1e4d37;
+}
+
+#print-help {
+    margin: .75rem 0 0;
+    font-size: .8rem;
+    line-height: 1.5;
+    color: #59616a;
+}
+
 .resume-main .item {
     margin-bottom: 1.4rem !important;
 }
@@ -262,49 +306,5 @@ input:focus-visible + span {
 
     .resume-section-heading {
         letter-spacing: .1rem;
-    }
-}
-
-@media print {
-    .resume-wrapper.p-5 {
-        padding: .4rem !important;
-        margin: 0 !important;
-        box-shadow: none !important;
-    }
-
-    .resume-title,
-    .resume-contact,
-    .resume-main,
-    .resume-aside {
-        flex: 0 0 100%;
-        max-width: 100%;
-        border-left: 0;
-    }
-
-    .resume-name {
-        font-size: 1.8rem;
-    }
-
-    .resume-contact {
-        margin-top: .5rem;
-    }
-
-    .resume-profile-image,
-    .phone-reveal {
-        display: none;
-    }
-
-    .resume-main {
-        padding-right: 15px !important;
-    }
-
-    .resume-main .item,
-    .education-section li {
-        break-inside: avoid;
-    }
-
-    .project-tag .badge {
-        color: #292929 !important;
-        background: transparent !important;
     }
 }
