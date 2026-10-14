@@ -27,8 +27,7 @@ body {
 }
 
 .resume-header .row,
-.resume-body > .row,
-.resume-intro .media {
+.resume-body > .row {
     display: block;
     margin: 0;
 }
@@ -80,7 +79,6 @@ body {
 }
 
 .resume-contact svg,
-.resume-profile-image,
 .phone-reveal,
 .project-tags,
 .noprint {

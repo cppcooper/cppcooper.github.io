@@ -286,15 +286,6 @@ input:focus-visible + span {
         margin: 1rem 0 !important;
     }
 
-    .resume-intro .media {
-        align-items: flex-start !important;
-    }
-
-    .resume-profile-image {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-    }
-
     .resume-item-heading {
         display: block;
     }
