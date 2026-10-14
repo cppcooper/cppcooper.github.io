@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>Joshua Cooper :: Developer CV</title>
+    <title>Joshua Cooper :: Generalist Game Programmer</title>
     
     <!-- Meta -->
     <meta name="robots" content="noindex,nofollow">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Software Engineer CV of Joshua Cooper">
+    <meta name="description" content="Joshua Cooper — generalist game programmer focused on architecture, systems, and tools.">
     <meta name="author" content="Joshua Cooper">    
     <link rel="shortcut icon" href="favicon.ico"> 
     
@@ -23,6 +23,7 @@
     <!-- Theme CSS -->  
     <link id="theme-style2" rel="stylesheet" href="assets/css/devresume.css">
     <link id="theme-style3" rel="stylesheet" href="assets/css/devresume-print.css" media="print">
+    <link rel="stylesheet" href="assets/css/resume.css">
 
 </head>
 
@@ -33,15 +34,16 @@
                 <div class="resume-header">
                     <div class="row align-items-center">
                         <div class="resume-title col-12 col-lg-8 col-xl-72">
-                            <h2 class="resume-name mb-0 text-uppercase"><a href="https://cppcooper.github.io/">Joshua Cooper</a></h2>
-                            <div id="profession" class="resume-tagline mb-3 mb-md-0">Software Engineer</div>
+                            <h1 class="resume-name mb-0 text-uppercase"><a href="https://cppcooper.github.io/">Joshua Cooper</a></h1>
+                            <div id="profession" class="resume-tagline">Generalist Game Programmer</div>
+                            <div class="resume-focus">Architecture, systems &amp; tools</div>
                         </div><!--//resume-title-->
                         <div class="resume-contact col-12 col-lg-4 col-xl-28">
                             <ul id="contact-details" class="list-unstyled mb-0">
                                 <li class="mb-1"><i class="fas fa-phone-square fa-fw fa-lg mr-2 "></i><a class="resume-link" href="tel:#">1-778 837-##72</a></li>
                                 <li class="mb-1"><i class="fas fa-envelope-square fa-fw fa-lg mr-2"></i><a class="resume-link" href="mailto:cooper.s.josh@outlook.com">cooper.s.josh@outlook.com</a></li>
-                                <li class="mb-1"><i class="fab fa-github-square fa-fw fa-lg mr-2"></i><a class="resume-link" href="http://github.com/cppcooper">github.com/cppcooper</a></li>
-                                <li class="mb-1"><i class="fab fa-linkedin fa-fw fa-lg mr-2"></i><a class="resume-link" href="http://linkedin.com/in/cppcooper">linkedin.com/in/cppcooper</a></li>
+                                <li class="mb-1"><i class="fab fa-github-square fa-fw fa-lg mr-2"></i><a class="resume-link" href="https://github.com/cppcooper">github.com/cppcooper</a></li>
+                                <li class="mb-1"><i class="fab fa-linkedin fa-fw fa-lg mr-2"></i><a class="resume-link" href="https://linkedin.com/in/cppcooper">linkedin.com/in/cppcooper</a></li>
                                 <li class="mb-0"><i class="fas fa-map-marker-alt fa-fw fa-lg mr-2"></i>Surrey, British Columbia</li>
                             </ul>
                         </div><!--//resume-contact-->
@@ -51,11 +53,11 @@
                 <hr>
                 <div class="resume-intro py-3">
                     <div class="media flex-column flex-md-row align-items-center">
-                        <img class="resume-profile-image mb-3 mb-md-0 mr-md-5 ml-md-0 rounded mx-auto" src="assets/images/pdp2.png" alt="image">
-                        <div id="resume-summary" class="media-body text-left col-10">
-                            <p class="mb-0 col-10">Software engineer with a passion for perpetual learning. Proficient in game development, data processing, and emerging technologies. Which means I can bring a unique blend of skills to the table as a neurodivergent Jack-of-all-trades. Which as the saying goes is often times better than a master of one.</p>
-                            <br>
-                            <p class="mb-0 col-10">I've cultivated a diverse skill set across many disciplines, driven by an insatiable curiosity. My adaptive mindset enables me to navigate complex terrain and embrace evolving technologies. Now, I am eager to channel this energy and experience into impactful ventures by seeking opportunities in Vancouver's dynamic tech ecosystem.</p>
+                        <img class="resume-profile-image mb-3 mb-md-0 mr-md-5 ml-md-0 rounded mx-auto" src="assets/images/pdp2.png" alt="Joshua Cooper">
+                        <div id="resume-summary" class="media-body text-left">
+                            <p>I'm a generalist game programmer with experience in shipped games, research software, and open-source tools. My focus is architecture: designing data structures, implementing algorithms, and building clear interfaces between systems.</p>
+                            <p class="mb-0">I'm a neurodivergent developer who learns the tools and languages each project needs. I'm looking for a generalist game development role where I can design and implement systems across a codebase.</p>
+                            <p id="current-project-focus" class="resume-current-focus" hidden></p>
                         </div><!--//media-body-->
                     </div>
                 </div><!--//resume-intro-->
@@ -67,13 +69,27 @@
                                 <h3 class="text-uppercase resume-section-heading mb-4">Experience</h3>
                             </section><!--//work-section-->
 
-                            <section id="project-section" class="project-section py-3">
-                                <h3 class="text-uppercase resume-section-heading mb-4">Projects</h3>
+                            <div id="project-section" class="project-section">
+                                <div class="project-filter-controls noprint">
+                                    <span id="project-filter-summary" aria-live="polite">Select a skill below to filter projects.</span>
+                                    <button id="clear-project-filters" type="button" hidden>Show all projects</button>
+                                </div>
                                 <div id="projects">
                                 </div>
-                            </section><!--//project-section-->
+                            </div><!--//project-section-->
                         </div><!--//resume-main-->
                         <aside class="resume-aside col-12 col-lg-4 col-xl-28 pb-lg-4">
+                            <section id="engineering-focus" class="skills-section py-3">
+                                <h3 class="text-uppercase resume-section-heading mb-4">Engineering Focus</h3>
+                                <ul class="list-unstyled resume-focus-list">
+                                    <li><span class="badge badge-focus">Software Architecture</span></li>
+                                    <li><span class="badge badge-focus">Data Structures</span></li>
+                                    <li><span class="badge badge-focus">Algorithms</span></li>
+                                    <li><span class="badge badge-focus">Gameplay Systems</span></li>
+                                    <li><span class="badge badge-focus">Interfaces</span></li>
+                                    <li><span class="badge badge-focus">Development Tools</span></li>
+                                </ul>
+                            </section>
                             <section id="education" class="education-section py-3">
                                 <h3 class="text-uppercase resume-section-heading mb-4">Education</h3>
                                 <ul id="education-list" class="list-unstyled resume-education-list">
@@ -96,7 +112,7 @@
                             </section><!--//education-section-->
                             <section class="skills-section py-3">
                                 <h3 class="text-uppercase resume-section-heading mb-4">Technical Skills</h3>
-                                <ul id="tech-skills" class="list-unstyled resume-skills-list" ></ul>
+                                <div id="tech-skills"></div>
                             </section>
                             <section class="skills-section py-3">
                                 <h3 class="text-uppercase resume-section-heading mb-4">Soft Skills</h3>

@@ -1,391 +1,318 @@
+function EscapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, character => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[character]);
+}
+
+function MakeListEntry(item, list_attributes, span_attributes) {
+    return `<li class="${list_attributes}"><span class="${span_attributes}">${EscapeHTML(item)}</span></li>`;
+}
+
+function MakeHighlights(items) {
+    return `<ul class="resume-bullets">${items.map(item => `<li>${item}</li>`).join('')}</ul>`;
+}
+
 class ExperienceEntry {
-    constructor(title,org,date_range,writeup){
-        this.title = title;
-        this.org = org;
-        this.date_range = date_range;
-        this.writeup = writeup;
+    constructor(title, org, period, highlights) {
+        Object.assign(this, {title, org, period, highlights});
     }
-    make_item(){
-        let item;
-        item =
-            '<div class="item mb-3">' +
-                '<div class="item-heading row align-items-center mb-2">' +
-                    '<h4 class="item-title col-12 col-md-6 col-lg-6 mb-2 mb-md-0">';
-        item +=         this.title;
-        item +=     '</h4>';
-        item +=     '<div class="item-meta col-12 col-md-6 col-lg-6 text-muted text-left text-md-right">';
-        item +=         this.org + ' | ' + this.date_range;
-        item +=     '</div>' + 
-                '</div>';
-        item += '<div class="item-content">';
-        item +=     '<p>' + this.writeup + '</p>';
-        item += '</div>' +
-            '</div>';
-        return item;
+
+    make_item() {
+        return `<div class="item mb-3">
+            <div class="resume-item-heading">
+                <h4 class="item-title">${EscapeHTML(this.title)}</h4>
+                <span class="item-meta text-muted">${EscapeHTML(this.org)} | ${EscapeHTML(this.period)}</span>
+            </div>
+            ${MakeHighlights(this.highlights)}
+        </div>`;
     }
 }
+
+// Activity describes my involvement, rather than the upstream project's status.
+// Change activity to "paused" or "maintained" when a project stops active development.
+// Project groups and the current-focus link then update together.
+const activity_labels = {
+    active: 'Active development',
+    maintained: 'Occasional maintenance',
+    paused: 'My work paused',
+    completed: 'Completed contribution'
+};
+
 class ProjectEntry {
-    constructor(name,source,date_range,tags,org_details,writeup){
-        this.name = name;
-        this.source = source;
-        this.date_range = date_range;
-        this.tags = tags;
-        this.org_details = org_details;
-        this.writeup = writeup;
+    constructor(details) {
+        Object.assign(this, details);
     }
-    add_tag_input_badges(){
-        let badges;
-        let base_id = this.name.replace(/\W+/g, '_').toLowerCase();
-        badges = '<fieldset>';
-        for (var i = 0; i < this.tags.length; i++) {
-            badges += MakeFieldEntry(base_id,this.tags[i]);
-        }
-        badges += "</fieldset>"
-        return badges;
+
+    get_group() {
+        if (this.activity === 'active') return 'active';
+        if (this.activity === 'maintained') return 'maintained';
+        if (this.category === 'commercial') return 'commercial';
+        if (this.activity === 'paused') return 'paused';
+        return 'completed';
     }
-    add_tag_badges(){
-        let badges;
-        badges = '<ul id="' + this.name.replace(/\s+/g, '-').toLowerCase() + '-tag-badges" class="list-unstyled list-inline">';
-        //todo: make clickable?
-        for (var i = 0; i < this.tags.length; i++) {
-            badges += MakeListEntry(this.tags[i], "list-inline-item", "badge badge-light");
-        }
-        badges += "</ul>"
-        //todo: display selected badges with badge-dark
-        //todo: save all tags into a master list
-        return badges;
-    }
-    get_tags(){
-        let tags;
-        tags = " ";
-        for (var i = 0; i < this.tags.length; i++) {
-            tags += 'tag-' + this.tags[i].replace(/\s+/g, '-').toLowerCase() + " ";
-        }
-        return tags;
-    }
-    make_item(){
-        let item;
-        item =
-            '<div class="item mb-3 ' + this.get_tags() + '">' +
-                '<div class="item-heading row align-items-center mb-0">' +
-                    '<h4 class="item-title col-12 col-md-6 col-lg-4 mb-md-0">';
-        item +=         this.name;
-        item +=     '</h4>';
-        item +=     '<div class="item-meta col-12 col-md-6 col-lg-8 text-muted text-left text-md-right">';
-        item +=         this.source + ' | ' + this.date_range;
-        item +=     '</div>';
-        //item +=     '<div class="item-meta col-12 col-md-6 col-lg-9 text-muted text-left" style="height: 48px">';
-        //item +=     '</div>'
-        item +=     '<div class="row mt-1 ml-0 mb-0" style="flex: 0 0 100.5%; max-width: 100.5%">';
-        item +=       '<div class="col-9">' + this.add_tag_input_badges() + '</div>';
-        item +=       '<div class="item-meta col-3 text-muted text-left text-md-right">' + this.org_details + "</div>";
-        item +=     '</div>' +
-                '</div>';
-        item += '<div class="item-content">';
-        item +=     '<p>' + this.writeup + '</p>';
-        item += '</div>' +
-            '</div>';
-        return item;
+
+    make_item() {
+        const name = this.url
+            ? `<a href="${this.url}">${EscapeHTML(this.name)}</a>`
+            : EscapeHTML(this.name);
+        const status = this.release || activity_labels[this.activity];
+        const tags = this.tags.map((tag, index) => {
+            const id = `${this.id}-tag-${index}`;
+            const checked = enabledSettings.includes(tag) ? ' checked' : '';
+            return `<label class="project-tag" for="${id}">
+                <input type="checkbox" id="${id}" name="tag-filters" value="${EscapeHTML(tag)}"${checked}>
+                <span class="badge badge-light">${EscapeHTML(tag)}</span>
+            </label>`;
+        }).join('');
+
+        return `<article id="project-${this.id}" class="item mb-3">
+            <div class="resume-item-heading">
+                <h4 class="item-title">${name}</h4>
+                <span class="item-meta text-muted">${EscapeHTML(this.period)}</span>
+            </div>
+            <div class="project-context">
+                <span>${EscapeHTML(this.context)} · ${EscapeHTML(this.source)}</span>
+                <span class="project-activity project-activity-${this.activity}">${EscapeHTML(status)}</span>
+            </div>
+            ${MakeHighlights(this.highlights)}
+            <fieldset class="project-tags">
+                <legend class="sr-only">Filter projects by skills used in ${EscapeHTML(this.name)}</legend>
+                ${tags}
+            </fieldset>
+        </article>`;
     }
 }
 
-function InsertListEntry(id,entryHTML){
-    document.getElementById(id).innerHTML += entryHTML;
-}
-function MakeListEntry(item,list_attributes,span_attributes,span_extra_styles){
-    return `<li class="${list_attributes}"><span class="${span_attributes}" style="${span_extra_styles}">${item}</span></li>`;
-}
-function MakeFieldEntry(base_id, item){
-    id = `${base_id}-${item.replace(/\W/g, '_').toLowerCase()}`;
-    id = id.replace()
-    html = `<div class="list-inline-item">`;
-    html += `<input class="badge hvr-fade" type="checkbox" id="${id}-checkbox" name="tag-filters" value="${item}" />`;
-    html += `<span id="${id}-checkbox-badge" class="badge badge-light" style="outline: #0a0a0a;outline-style: solid; outline-width: 1.9px">`;
-    html += `<label class="mb-0" for=${id}-checkbox>${item}</label>`;
-    html += "</span></div>";
-    return html;
-}
-function InsertTechnicalSkills(item){
-     let new_entry = MakeListEntry(item,
-         "list-inline-item",
-         "badge badge-tech");
-     InsertListEntry("tech-skills",new_entry);
-}
+let enabledSettings = [];
 
-function InsertSoftSkills(item){
-    let new_entry = MakeListEntry(item,
-        "list-inline-item",
-        "badge badge-soft");
-    InsertListEntry("soft-skills",new_entry);
-}
-
-function InsertInterests(item){
-    let new_entry = MakeListEntry(item,
-        "list-inline-item",
-        "badge badge-hobbies");
-    InsertListEntry("interests",new_entry);
-}
-
-function InsertProjects(item) {
-    if (enabledSettings.length == 0) {
-        InsertListEntry("projects", item.make_item());
-    } else if (item.tags.some(r => enabledSettings.includes(r))) {
-        // todo: implement settings to include projects based on tags that are enabled (useful in situations where a particular project isn't useful for an application)
-        // might not be a good way of doing this in the end
-        InsertListEntry("projects", item.make_item());
-    }
-}
-
-function InsertExperience(item){
-    InsertListEntry("experience", item.make_item());
-}
-
-let enabledSettings=[];
-
-
-const technical_skills = [
-    'C++',
-    'Java',
-    'Git',
-    "UML",
-    'UE4',
-    'CMake',
-    'Bash',
-    'Lua',
-    'SQL',
-    'PHP',
-    'JavaScript',
-    'R',
-    'Julia',
-    'C#',
-    'OpenGL',
-    'CUDA',
-    'Windows',
-    'Linux',
+const technical_skill_groups = [
+    {name: 'Most used', skills: ['C++', 'CMake', 'Git']},
+    {name: 'Additional languages', skills: ['C#', 'Lua', 'Java', 'JavaScript', 'SQL', 'Bash', 'PHP', 'R', 'Julia']},
+    {name: 'Libraries', skills: ['OpenGL', 'CUDA']},
+    {name: 'Tools & platforms', skills: ['UML', 'Windows', 'Linux']},
+    {name: 'Previous engine experience', skills: ['Unity', 'Unreal Engine 4']}
 ];
+
 const soft_skills = [
-    'Teamwork',
-    'Leadership',
-    'Adaptability',
-    'Detail-Oriented',
-    'Creativity',
-    'Empathy'
+    'Collaboration', 'Adaptability', 'Analytical Problem-Solving', 'Technical Communication'
 ];
+
 const interests = [
-    'Hiking',
-    'D&D',
-    'Storytelling',
-    'Bicycles',
-    'Game Dev',
-    'Scripting',
-    'DevOps',
-    'Memory Hacking',
-    'Modding',
-    'Data Science',
-    'Machine Learning',
-    'Blockchain',
-    'Team Games',
-    'Spirituality'
+    'Modding', 'Tabletop RPGs (D&D)', 'Mutual Aid & Direct Democracy', 'Hiking', 'Cycling', 'Reverse Engineering'
 ];
 
 const projects_list = [
-    new ProjectEntry(
-        "BCCF Data Pipeline",
-        "Open Source",
-        "2021 - 2022",
-        [
-            "C++",
-            "CMake",
-            "PostgreSQL",
-            "Software Architecture",
-            "DICOM Parsing",
-            "Unit Testing",
-            "Orthanc",
-            "Docker",
-            "CI"
-        ],
-        "(Capstone Project)",
-        "This <a href=\"https://github.com/cppcooper/Orthanc-filter\">Orthanc filter plugin</a> is a tool developed for the <a href='https://bccancerfoundation.com/about-us/'>British Columbia Cancer Foundation</a>. " +
-        "The medical imaging machines used to diagnose cancer create what are known as DICOM images, which are sent to the BCCF for research among other purposes. The <a href='https://dicom.nema.org/medical/dicom/current/output/chtml/part10/chapter_7.html'>DICOM format</a>" +
-        " allows for the encapsulation of many forms of data in addition to the binary image data. Some of this information exposes patient identities and needs to be scrubbed from the images before they can be used in research. " +
-        "The plugin, which I wrote for performance and customization, scrubs or redacts any information desired so a Doctor will no longer need to manually scrub each individual file."
-    ),
-    new ProjectEntry(
-        "Heavy Gear Assault",
-        "Closed Source",
-        "2017",
-        [
-            "UE4",
-            "C++",
-            "AI",
-            "Linear Algebra",
-            "Perforce",
-            "Agile:Scrum"
-        ],
-        "(Stompy Bot Corp. | Shipped)",
-        "<a href=\"https://store.steampowered.com/app/416020/Heavy_Gear_Assault/\">Heavy Gear Assault</a> is an online competitive first-person shooter with mechanized infantry for players to 'pilot'. " +
-        "I was tasked with improving the bot AI. To do this I generated reaction times and a few other stats using gaussian distributions to provide the bots more natural behaviours. Though due to the game engine having been" +
-        " heavily modified I had trouble synchronizing the interpolation of the bots' targeting system."
-    ),
-    new ProjectEntry(
-        "Sabotage",
-        "Closed Source",
-        "2016",
-        [
-            "UE4",
-            "C++",
-            "Blueprints",
-            "UI",
-            "DevOps",
-            "Perforce",
-            "Agile:Scrum"
-        ],
-        "(Stompy Bot Corp.)",
-        "Sabotage was a side scrolling stealth shooter based on the book by the same name. I developed several core systems, such as the player's pawn controller, and various UMG widgets such as a 2D radar on the HUD. " +
-        "After about two months I was transferred to help with the development of a larger project."
-    ),
-    new ProjectEntry(
-        "Indra's Net",
-        "Closed Source",
-        "2018 - 2020",
-        [
-            "UE4",
-            "C++",
-            "Blueprints",
-            "UI",
-            "Physics",
-            "Linear Algebra",
-            "Software Architecture"
-        ],
-        "(UBCO - Psych. Dept.)",
-        "<a href=\"https://gabora-psych.ok.ubc.ca/IN.html\">Indra's Net</a> is a project envisioned and led by Dr. Liane Gabora. The project will be a tool for visualizing psychology and is intended for patient use. " +
-        "My role was in the development of procedurally generated meshes, a laser system along with the corresponding physics, some very time consuming shader work, and of course some documentation. My contributions to" +
-        " development took place primarily over two consecutive summers with some of the work having been parallel to my university course work."
-    ),
-    new ProjectEntry(
-        "Skyrim Modding",
-        "Open Source",
-        "2023 - Present",
-        [
-            "C++",
-            "Papyrus",
-            "Creation Kit",
-            "SKSE",
-            "CommonLibSSE"
-        ],
-        "(Solo Project, Personal)",
-        "From fixes to other mods, to a few standalone mods using either Payprus or SKSE plugins. Each with a few hundred unique downloads, and some with a couple thousand. " +
-        "My next release will be to add equippable bags linked to chests which I've decided to call Bags of Holding since it is largely inspired by Dungeons & Dragons' Bags of Holding and Devouring. " +
-        "All of my mods can be found on NexusMods <a href=\"https://www.nexusmods.com/skyrimspecialedition/users/235189?tab=user+files\">here</a>"
-    ),
-    new ProjectEntry(
-        "DFHack",
-        "Open Source",
-        "2017 - Present",
-        [
-            "C++",
-            "CMake",
-            "CI",
-            "Lua",
-            "RNG",
-            "Procedural Programming",
-            "Software Architecture"
-        ],
-        "(Github Community)",
-        "<a href=\"https://github.com/DFHack/dfhack#readme\">DFHack</a> is an API and reverse engineering effort for <a href=\"https://www.bay12games.com/dwarves/\">Dwarf Fortress</a>, ie. a world simulator & story generator. " +
-        "I have contributed several robust <a href=\"https://github.com/cppcooper/dfhack-scripts\">scripts</a> for modifying and managing citizens & livestock, a development script for intelligently searching recursive data structures. " +
-        "There are even a few very useful plugins I've provided <a href=\"https://github.com/cppcooper/dfhack\">plugins</a> (cxxrandom, channel-safely, spectate), and a few contributions to the core systems."
-    ),
-
-    new ProjectEntry(
-        "Amazons-AI",
-        "Open Source",
-        "2021",
-        [
-            "Java",
-            "AI",
-            "Parallel",
-            "Client/Server",
-            "Software Architecture"
-        ],
-        "(Group Project, School)",
-        "<a href=\"https://github.com/cppcooper/game-of-the-amazons-ai\">This AI project</a> was a class competition and intended as a serious challenge due to the game's branching factor. " +
-        "The first player in the initial position has 2176 possible moves, which decreases rapidly as moves are played. Our AI ran on an old AMD FX-9590 during the competition, with inadequate cooling, " +
-        "which led to several of our matches being lost due to CPU overheating [system crashes]. Despite these challenges I was able to ensure my team placed 5th in the rankings out of about 25 teams."
-    ),
-    
-    new ProjectEntry(
-        "Fame and Fortune: Hidden Objects",
-        "Closed Source",
-        "2015",
-        [
-            "C#",
-            "UI",
-            "Unity",
-            "Procedural Programming",
-            "Debugging",
-            "Software Architecture",
-            "Agile: Scrum"
-        ],
-        "(Gogii Games | Shipped)",
-        "Worked eight months on a hidden object game released on android and iphone. I implemented mini games for a monetized in-game casino, and " +
-        "chipped away at the bug tracker. A lot of the bugs were just results of architectural consequences, nothing too major. Most problems were where " +
-        "refactoring a core system would be the most elegant solution to a major bug, but unfeasible based on stage of development."
-    ),
-    
-    new ProjectEntry(
-        "Cheryl-Engine",
-        "Open Source",
-        "2013 - Present",
-        [
-            "C++",
-            "OpenGL",
-            "Software Architecture",
-            "Unit Testing"
-        ],
-        "(Solo Project, Personal)",
-        "Cheryl Engine is an OpenGL game engine forked from <a href=\"https://github.com/Gibgezr/blit3d\">Blit3D</a>. " +
-        "I've used this project as a place to passionately practice and learn about OpenGL, meta-programming, and software architecture. " +
-        "There have been a few years I've neglected this project, but I always come back to improve upon the codebase."
-    )
+    new ProjectEntry({
+        id: 'cheryl-engine',
+        name: 'Cheryl-Engine',
+        url: 'https://github.com/cppcooper/cheryl-engine',
+        period: 'Started 2013',
+        source: 'Open source',
+        context: 'Independent project',
+        activity: 'active',
+        category: 'personal',
+        tags: ['C++', 'CMake', 'Software Architecture', 'Concurrency', 'OpenGL', 'Unit Testing'],
+        highlights: [
+            'Designing a C++ game engine with interfaces between input, simulation, rendering, and resource management.',
+            'Implemented sequential and concurrent runtimes, event dispatch, and worker scheduling.',
+            'Built regression coverage for subsystem lifetimes and failure handling, alongside a runnable OpenGL demo.'
+        ]
+    }),
+    new ProjectEntry({
+        id: 'heavy-gear-assault',
+        name: 'Heavy Gear Assault',
+        url: 'https://store.steampowered.com/app/416020/Heavy_Gear_Assault/',
+        period: '2017',
+        source: 'Closed source',
+        context: 'Professional work · Stompy Bot Corp.',
+        activity: 'completed',
+        category: 'commercial',
+        release: 'Shipped',
+        tags: ['UE4', 'C++', 'AI', 'Linear Algebra', 'Perforce', 'Scrum'],
+        highlights: [
+            'Worked on bot AI for a shipped multiplayer mech shooter in a modified Unreal Engine 4 codebase.',
+            'Used Gaussian distributions to vary bot reaction times and other behaviour parameters.'
+        ]
+    }),
+    new ProjectEntry({
+        id: 'fame-and-fortune',
+        name: 'Fame and Fortune: Hidden Objects',
+        url: 'https://apps.apple.com/ca/app/fame-and-fortune-hidden-objects/id980580810',
+        period: '2015',
+        source: 'Closed source',
+        context: 'Professional work · Gogii Games',
+        activity: 'completed',
+        category: 'commercial',
+        release: 'Shipped · iOS & Android',
+        tags: ['C#', 'Unity', 'UI', 'Debugging', 'Software Architecture', 'Scrum'],
+        highlights: [
+            'Implemented casino mini-game functionality for a shipped Unity mobile game.',
+            'Fixed event-system and gameplay bugs during pre-release development.'
+        ]
+    }),
+    new ProjectEntry({
+        id: 'sabotage',
+        name: 'Sabotage',
+        url: 'https://www.globenewswire.com/news-release/2016/06/07/1036866/0/en/Stompy-Bot-Receives-CMF-Funding-and-Announces-Sabotage.html',
+        period: '2016',
+        source: 'Closed source',
+        context: 'Professional work · Stompy Bot Corp.',
+        activity: 'completed',
+        category: 'commercial',
+        release: 'Unreleased',
+        tags: ['UE4', 'C++', 'Blueprints', 'UI', 'Perforce', 'Scrum'],
+        highlights: [
+            'Developed the player pawn controller for a side-scrolling stealth shooter based on Matt Cook’s novel Sabotage.',
+            'Implemented UMG interface widgets, including a 2D radar HUD.'
+        ]
+    }),
+    new ProjectEntry({
+        id: 'dfhack',
+        name: 'DFHack',
+        url: 'https://github.com/DFHack/dfhack',
+        period: 'First contributed 2017',
+        source: 'Open source',
+        context: 'Community contributions',
+        activity: 'paused',
+        category: 'community',
+        tags: ['C++', 'CMake', 'Lua', 'RNG', 'Software Architecture'],
+        highlights: [
+            'Contributed C++ plugins including cxxrandom, channel-safely, and spectate, plus Lua scripts for Dwarf Fortress.',
+            'Built tools for inspecting recursive data structures and managing game entities, and contributed changes to core systems.'
+        ]
+    }),
+    new ProjectEntry({
+        id: 'skyrim-modding',
+        name: 'Skyrim Modding',
+        url: 'https://www.nexusmods.com/skyrimspecialedition/users/235189?tab=user+files',
+        period: 'Started 2023',
+        source: 'Open source',
+        context: 'Independent projects',
+        activity: 'paused',
+        category: 'personal',
+        tags: ['C++', 'Papyrus', 'Creation Kit', 'SKSE', 'CommonLibSSE'],
+        highlights: [
+            'Developed standalone mods and fixes using Papyrus and C++ SKSE plugins.',
+            'Released mods with hundreds to thousands of unique downloads.'
+        ]
+    }),
+    new ProjectEntry({
+        id: 'bccf-data-pipeline',
+        name: 'BCCF Data Pipeline',
+        url: 'https://github.com/cppcooper/Orthanc-filter',
+        period: '2021–2022',
+        source: 'Open source',
+        context: 'University capstone · British Columbia Cancer Foundation',
+        activity: 'completed',
+        category: 'academic',
+        tags: ['C++', 'CMake', 'PostgreSQL', 'DICOM', 'Orthanc', 'Docker', 'Unit Testing', 'CI'],
+        highlights: [
+            'Built a configurable C++ Orthanc plugin to remove identifying information from DICOM medical images for research.',
+            'Automated redaction that would otherwise require processing individual files manually.'
+        ]
+    }),
+    new ProjectEntry({
+        id: 'indras-net',
+        name: "Indra's Net",
+        url: 'https://gabora-psych.ok.ubc.ca/IN.html',
+        period: '2018–2020',
+        source: 'Closed source',
+        context: 'Research employment · UBC Okanagan',
+        activity: 'completed',
+        category: 'research',
+        tags: ['UE4', 'C++', 'Blueprints', 'Physics', 'Linear Algebra', 'Software Architecture'],
+        highlights: [
+            'Implemented procedural mesh generation, laser physics, and shaders for a psychology visualization project led by Dr. Liane Gabora.',
+            'Developed and documented systems across two summers alongside university coursework.'
+        ]
+    }),
+    new ProjectEntry({
+        id: 'amazons-ai',
+        name: 'Amazons-AI',
+        url: 'https://github.com/cppcooper/game-of-the-amazons-ai',
+        period: '2021',
+        source: 'Open source',
+        context: 'University team project',
+        activity: 'completed',
+        category: 'academic',
+        tags: ['Java', 'AI', 'Parallel Computing', 'Client/Server', 'Software Architecture'],
+        highlights: [
+            'Developed a game-playing AI with a team for a competition with 2,176 legal opening moves.',
+            'The team placed fifth out of approximately 25 teams, despite hardware-overheating forfeits.'
+        ]
+    })
 ];
 
 const experience = [
-    new ExperienceEntry(
-        "Associate",
-        "Turtle Bay IT Services",
-        "2022.03 - 2022.09",
-        "Managed remote hosts using ESET, Office 365, and a number of other tools to support small businesses. Performed hardware diagnosis and repairs on Windows and Macs. Helped manage linux virtual servers."
-    ),
-    new ExperienceEntry(
-        "Software Engineer",
-        "UBCO",
-        "2018.05 - 2020.05",
-        "Developed the codebase of Indra's Net, a project under a psychology professor. (listed below)"
-    ),
-    new ExperienceEntry(
-        "Game Developer",
-        "Stompy Bot Corp.",
-        "2016.10 - 2017.04",
-        "Developed parts of two UE4 projects: Sabotage, then Heavy Gear Assault. (both listed below)"
-    ),
-    new ExperienceEntry(
-        "Junior Developer",
-        "Gogii Games",
-        "2015.04 - 2015.09",
-        "Hired for pre-release crunch. Fixed bugs related to the event system architecture. Added the first mini-game for a monetized in-game casino."
-    ),
-    new ExperienceEntry(
-        "Technical Support Specialist",
-        "Research In Motion",
-        "2011.07 - 2012.08",
-        "Helped thousands of customers as part of BlackBerry's highest tier of technical support for handhelds and desktop software."
-    )
-]
+    new ExperienceEntry('Associate · IT Support', 'Turtle Bay IT Services', 'Mar–Sep 2022', [
+        'Managed remote hosts using ESET and Microsoft 365 to support small businesses.',
+        'Diagnosed and repaired Windows and Mac hardware, and helped maintain Linux virtual servers.'
+    ]),
+    new ExperienceEntry('Software Engineer', 'UBC Okanagan', 'May 2018–May 2020', [
+        "Developed Indra's Net, a UE4 psychology visualization project under Dr. Liane Gabora.",
+        'Implemented procedural meshes, laser physics, shaders, and system documentation.'
+    ]),
+    new ExperienceEntry('Game Developer', 'Stompy Bot Corp.', 'Oct 2016–Apr 2017', [
+        'Built gameplay systems and UMG interface widgets for Sabotage.',
+        'Contributed bot AI work to Heavy Gear Assault, a shipped multiplayer game.'
+    ]),
+    new ExperienceEntry('Junior Developer', 'Gogii Games', 'Apr–Sep 2015', [
+        'Fixed event-system bugs during pre-release development of a Unity mobile game.',
+        'Implemented the first casino mini-game for Fame and Fortune: Hidden Objects.'
+    ]),
+    new ExperienceEntry('Technical Support Specialist', 'Research In Motion', 'Jul 2011–Aug 2012', [
+        "Supported thousands of customers in BlackBerry's highest tier of handheld and desktop software support."
+    ])
+];
 
-technical_skills.forEach(InsertTechnicalSkills);
-soft_skills.forEach(InsertSoftSkills);
-interests.forEach(InsertInterests);
-projects_list.forEach(InsertProjects);
-experience.forEach(InsertExperience);
+const project_groups = [
+    {id: 'active', title: 'Active Projects'},
+    {id: 'maintained', title: 'Maintained Projects'},
+    {id: 'commercial', title: 'Shipped & Commercial Work'},
+    {id: 'paused', title: 'Paused Projects'},
+    {id: 'completed', title: 'Completed Work'}
+];
 
+function RenderProjects() {
+    const visible = projects_list.filter(project => enabledSettings.length === 0
+        || project.tags.some(tag => enabledSettings.includes(tag)));
+    const controls = document.querySelector('.project-filter-controls');
+    if (controls) controls.remove();
+    const container = document.getElementById('projects');
+    container.innerHTML = project_groups.map(group => {
+        const entries = visible.filter(project => project.get_group() === group.id);
+        if (entries.length === 0) return '';
+        return `<section class="project-group py-3" aria-labelledby="project-group-${group.id}">
+            <h3 id="project-group-${group.id}" class="text-uppercase resume-section-heading mb-4">${EscapeHTML(group.title)}</h3>
+            ${entries.map(project => project.make_item()).join('')}
+        </section>`;
+    }).join('');
+    if (controls) {
+        const firstHeading = container.querySelector('.project-group > h3');
+        if (firstHeading) firstHeading.after(controls);
+        else container.append(controls);
+    }
+}
+
+function RenderCurrentFocus() {
+    const element = document.getElementById('current-project-focus');
+    if (!element) return;
+    const active = projects_list.filter(project => project.activity === 'active');
+    element.hidden = active.length === 0;
+    element.innerHTML = active.length
+        ? `Current project focus: ${active.map(project => `<a href="#project-${project.id}">${EscapeHTML(project.name)}</a>`).join(', ')}.`
+        : '';
+}
+
+document.getElementById('tech-skills').innerHTML = technical_skill_groups.map(group => `
+    <div class="technical-skill-group">
+        <h4>${EscapeHTML(group.name)}</h4>
+        <ul class="list-inline mb-0">${group.skills.map(skill => MakeListEntry(skill, 'list-inline-item', 'badge badge-tech')).join('')}</ul>
+    </div>`).join('');
+document.getElementById('soft-skills').innerHTML = soft_skills
+    .map(skill => MakeListEntry(skill, 'list-inline-item', 'badge badge-soft')).join('');
+document.getElementById('interests').innerHTML = interests
+    .map(interest => MakeListEntry(interest, 'list-inline-item', 'badge badge-hobbies')).join('');
+document.getElementById('experience').insertAdjacentHTML('beforeend', experience.map(entry => entry.make_item()).join(''));
+RenderProjects();
+RenderCurrentFocus();

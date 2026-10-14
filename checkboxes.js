@@ -1,60 +1,43 @@
-let checkboxes = document.querySelectorAll("input[type=checkbox][name=tag-filters]");
+const projectContainer = document.getElementById('projects');
+const clearFiltersButton = document.getElementById('clear-project-filters');
+const filterSummary = document.getElementById('project-filter-summary');
 
-function OnChange(event) {
-    ReadSettings();
-    enabledSettings = [...new Set(enabledSettings)];
-    if (!event.target.checked) {
-        let idx = enabledSettings.indexOf(event.target.value);
-        if (idx !== -1) {
-            enabledSettings.splice(idx, 1);
-        }
+function UpdateProjectFilterSummary() {
+    clearFiltersButton.hidden = enabledSettings.length === 0;
+    filterSummary.textContent = enabledSettings.length
+        ? `Showing projects using ${enabledSettings.join(' or ')}.`
+        : 'Select a skill below to filter projects.';
+}
+
+projectContainer.addEventListener('change', event => {
+    const checkbox = event.target;
+    if (!checkbox.matches('input[name="tag-filters"]')) return;
+    if (checkbox.checked) {
+        enabledSettings = [...new Set([...enabledSettings, checkbox.value])];
+    } else {
+        enabledSettings = enabledSettings.filter(tag => tag !== checkbox.value);
     }
-    UpdateFilters();
-    UpdateCheckboxes();
+    const focusId = checkbox.id;
+    RenderProjects();
+    UpdateProjectFilterSummary();
+    const replacement = document.getElementById(focusId);
+    if (replacement) replacement.focus({preventScroll: true});
+    else clearFiltersButton.focus({preventScroll: true});
+});
+
+function ClearProjectFilters() {
+    enabledSettings = [];
+    RenderProjects();
+    UpdateProjectFilterSummary();
 }
 
-function UpdateCheckboxes() {
-    enabledSettings.forEach(function(value) {
-        let checkboxes = document.querySelectorAll(`input[type=checkbox][value="${value}"]`);
-        checkboxes.forEach(function (e) {
-            e.checked = true;
-            let id = `${e.id}-badge`;
-            let badge = document.querySelector(`span[id=${id}]`);
-            badge.classList.remove("badge-light");
-            badge.classList.add("badge-dark");
-        });
-        //let badges = document.querySelectorAll(`span[id*=${id}]`);
-    });
-}
+clearFiltersButton.addEventListener('click', () => {
+    ClearProjectFilters();
+    projectContainer.querySelector('input[name="tag-filters"]')?.focus({preventScroll: true});
+});
 
-function UpdateFilters() {
-    let projects = document.getElementById("projects");
-    projects.innerHTML="";
-    projects_list.forEach(InsertProjects);
-    // we modified the page, so we're gonna re-hook the checkboxes
-    HookCheckboxes();
-}
+document.getElementById('current-project-focus')?.addEventListener('click', event => {
+    if (event.target.closest('a[href^="#project-"]')) ClearProjectFilters();
+});
 
-function HookCheckboxes() {
-    checkboxes = document.querySelectorAll("input[type=checkbox][name=tag-filters]");
-    checkboxes.forEach(function(checkbox) {
-        checkbox.removeEventListener('change', OnChange);
-        checkbox.addEventListener('change', OnChange);
-    });
-}
-
-function ReadSettings() {
-    console.log(`checkboxes array length: ${checkboxes.length}`)
-    enabledSettings = Array
-        .from(checkboxes)
-        .filter(i => i.checked)
-        .map(i => i.value);
-}
-
-function Initialize() {
-    ReadSettings();
-
-    UpdateFilters();
-}
-
-Initialize();
+UpdateProjectFilterSummary();
