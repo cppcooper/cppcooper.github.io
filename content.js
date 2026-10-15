@@ -178,7 +178,7 @@ const projects_list = [
         tags: ['C++', 'CMake', 'Lua', 'RNG', 'Software Architecture'],
         highlights: [
             'Contributed C++ plugins including cxxrandom, channel-safely, and spectate, plus Lua scripts for Dwarf Fortress.',
-            'Built tools for inspecting recursive data structures and managing game entities, and contributed changes to core systems.'
+            'Built tools for searching recursive data structures and managing game entities, and contributed changes to core systems.'
         ]
     }),
     new ProjectEntry({
