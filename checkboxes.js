@@ -2,8 +2,8 @@ const project_groups = [
     {id: 'active', title: 'Active Projects'},
     {id: 'maintained', title: 'Maintained Projects'},
     {id: 'commercial', title: 'Shipped & Commercial Work'},
-    {id: 'paused', title: 'Paused Projects'},
-    {id: 'completed', title: 'Completed Work'}
+    {id: 'completed', title: 'Completed Work'},
+    {id: 'paused', title: 'Paused Projects'}
 ];
 
 function VisibleProjects() {
