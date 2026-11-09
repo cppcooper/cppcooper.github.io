@@ -19,7 +19,7 @@ check('all four cumulative profiles include their predecessors', () => {
         previous.forEach(id => assert(current.includes(id), `${id} missing from ${profile.id}`));
         previous = current;
     }
-    assert.deepEqual(profiles.profiles.map(profile => profiles.visibleProjects(projects, profile.id).length), [12, 19, 21, 26]);
+    assert.deepEqual(profiles.profiles.map(profile => profiles.visibleProjects(projects, profile.id).length), [4, 12, 14, 26]);
 });
 
 check('the complete CV has all 21 public project pages exactly once', () => {
@@ -37,13 +37,28 @@ check('the complete CV has all 21 public project pages exactly once', () => {
     assert(!entries.some(project => /modeling|vikunja/i.test(project.name)));
 });
 
-check('Professional includes the selected engineering work without erasing its context', () => {
+check('Professional includes exactly the four paid employment projects', () => {
     const selected = profiles.visibleProjects(projects, 'professional');
-    ['cheryl-engine-modern', 'dicom-tag-filter', 'dfhack', 'hypermaze-cheryl4-port', 'rover-cheryl4-port',
-        'word-search-cheryl4-port', 'space-invaders-cheryl4-port'].forEach(key => assert(selected.some(p => p.portfolioKey === key)));
-    assert(selected.find(p => p.portfolioKey === 'dicom-tag-filter').context.includes('University capstone'));
-    assert(selected.find(p => p.portfolioKey === 'dfhack').context.includes('Community'));
-    assert.equal(selected.find(p => p.portfolioKey === 'cheryl-engine-modern').activity, 'active');
+    assert.deepEqual(selected.map(project => project.id).sort(), [
+        'fame-and-fortune', 'heavy-gear-assault', 'indras-net', 'sabotage'
+    ]);
+    selected.forEach(project => assert.match(project.context, /^(Professional work|Research employment)/));
+    projects.filter(project => project.portfolioKey).forEach(project => {
+        assert(!profiles.includesProject('professional', project), `${project.id} is unpaid project work`);
+    });
+});
+
+check('Academic adds the capstone and earlier academic work while Hobby adds unpaid independent work', () => {
+    const academic = profiles.visibleProjects(projects, 'academic');
+    assert(academic.find(project => project.portfolioKey === 'dicom-tag-filter').context.includes('University capstone'));
+    const hobby = profiles.visibleProjects(projects, 'hobby');
+    ['cheryl-engine-modern', 'dfhack', 'dfhack-scripts', 'hypermaze-cheryl4-port', 'rover-cheryl4-port',
+        'word-search-cheryl4-port', 'space-invaders-cheryl4-port'].forEach(key => {
+        const project = hobby.find(entry => entry.portfolioKey === key);
+        assert.equal(project.minimumProfile, 'hobby');
+        assert(!profiles.includesProject('published', project));
+    });
+    assert.equal(hobby.find(project => project.portfolioKey === 'cheryl-engine-modern').activity, 'active');
 });
 
 check('Published adds verified independent releases, not a public repository or blog', () => {
@@ -140,7 +155,7 @@ function projectIds(html) {
 check('the browser defaults to Professional and selects cumulative profiles without changing experience', () => {
     const fixture = browserFixture();
     const initialExperience = fixture.element('experience').innerHTML;
-    assert.equal(projectIds(fixture.element('projects').innerHTML).length, 12);
+    assert.equal(projectIds(fixture.element('projects').innerHTML).length, 4);
     assert.equal(fixture.element('resume-profile-controls').hidden, false);
     const select = fixture.element('resume-profile');
     select.listeners.change({target: {value: 'hobby'}});
@@ -159,7 +174,7 @@ check('a shared filter, empty selection, clear action and browser Back restore t
     assert.match(fixture.element('projects').innerHTML, /No projects/);
     assert.equal(fixture.element('clear-project-filters').hidden, false);
     fixture.element('clear-project-filters').listeners.click();
-    assert.equal(projectIds(fixture.element('projects').innerHTML).length, 12);
+    assert.equal(projectIds(fixture.element('projects').innerHTML).length, 4);
     assert(!fixture.window.location.search.includes('skill='));
     fixture.window.location.search = '?profile=published&skill=Papyrus';
     fixture.listeners.popstate();

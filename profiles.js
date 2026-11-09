@@ -1,7 +1,7 @@
 // Shared by the browser and the dependency-free profile checks.
 const ResumeProfiles = (() => {
     const profiles = Object.freeze([
-        {id: 'professional', label: 'Professional', description: 'Selected engineering projects and professional work.'},
+        {id: 'professional', label: 'Professional', description: 'Projects completed through paid employment.'},
         {id: 'academic', label: 'Academic', description: 'Professional profile plus coursework and academic projects.'},
         {id: 'published', label: 'Published', description: 'Academic profile plus independently released software and mods.'},
         {id: 'hobby', label: 'Hobby', description: 'Full CV, including independent experiments and earlier projects.'}

@@ -10,17 +10,18 @@ node tests/profiles.test.js
 
 The native profile selector is cumulative. Each project in `content.js` has a
 `minimumProfile`; `profiles.js` defines the order and descriptions. “Professional”
-means a selected engineering resume. It includes clearly identified independent,
-community and capstone work alongside employment projects; it does not imply all
-listed projects were paid work. Employment, education, contact information and
-the existing footer are shared across profiles.
+means projects for which income was earned. The current Professional entries are
+four paid employment projects; independent engine work, ports, community
+contributions and the university capstone appear only in broader profiles.
+Employment, education, contact information and the existing footer are shared
+across profiles.
 
 | Profile | Adds | Total projects |
 | --- | --- | ---: |
-| Professional | Selected engineering and existing professional work | 12 |
-| Academic | Original algorithm/game work and university projects | 19 |
-| Published | Independently released Nexus Mods work | 21 |
-| Hobby | Remaining independent work and early projects; full CV | 26 |
+| Professional | Four paid employment projects | 4 |
+| Academic | Original algorithm/game work, university projects and the Orthanc capstone | 12 |
+| Published | Independently released Nexus Mods work | 14 |
+| Hobby | Independent engine and port work, community contributions and other personal projects; full CV | 26 |
 
 Public repository visibility and writing publication are not software releases.
 The Published additions currently have `releases` arrays naming Nexus Mods and
@@ -72,10 +73,10 @@ The proposed Vikunja code-farm page is still unpublished and is not in this CV.
 
 | Minimum profile | Projects |
 | --- | --- |
-| Professional | Cheryl Engine 4; its Space Invaders, Hypermaze, Rover and Word Search ports; DICOM Tag Filter for Orthanc; DFHack Contributions; DFHack Lua Scripts; Heavy Gear Assault; Fame and Fortune; Sabotage; Indra's Net |
-| Academic | Game of the Amazons AI; Flight Itinerary Search; Hypermaze Prototype; Word Search with Threads; original Space Invaders; Rover Recursive Pathfinding; A* Pathfinding |
+| Professional | Heavy Gear Assault; Fame and Fortune; Sabotage; Indra's Net |
+| Academic | DICOM Tag Filter for Orthanc; Game of the Amazons AI; Flight Itinerary Search; Hypermaze Prototype; Word Search with Threads; original Space Invaders; Rover Recursive Pathfinding; A* Pathfinding |
 | Published | Reserved Magicka NG; existing Skyrim Modding overview |
-| Hobby | Historical Cheryl Engine; Rebuilding the Portfolio; NXM; Terminal Time Tracker; Shirly |
+| Hobby | Cheryl Engine 4; its Space Invaders, Hypermaze, Rover and Word Search ports; DFHack Contributions; DFHack Lua Scripts; historical Cheryl Engine; Rebuilding the Portfolio; NXM; Terminal Time Tracker; Shirly |
 
 The existing employment project descriptions remain owner-authored resume facts.
 Orthanc now describes the primary implementation within a team capstone; it makes
