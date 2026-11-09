@@ -293,7 +293,7 @@ const projects_list = [
             "Unit Testing"
         ],
         "highlights": [
-            "Developed structure-inspection and configurable dwarf-allocation tools, alongside animal and migration helpers in the community script collection."
+            "Built tools for searching recursive data structures and configuring dwarf allocation, alongside animal and migration helpers in the community script collection."
         ]
     }),
     new ProjectEntry({
