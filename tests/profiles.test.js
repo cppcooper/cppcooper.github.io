@@ -61,6 +61,22 @@ check('Academic adds the capstone and earlier academic work while Hobby adds unp
     assert.equal(hobby.find(project => project.portfolioKey === 'cheryl-engine-modern').activity, 'active');
 });
 
+check('the four completed college ports remain distinct from the active engine', () => {
+    ['space-invaders-cheryl4-port', 'hypermaze-cheryl4-port', 'rover-cheryl4-port',
+        'word-search-cheryl4-port'].forEach(key => {
+        const project = projects.find(entry => entry.portfolioKey === key);
+        assert.equal(project.activity, 'completed');
+        assert.equal(project.period, '2026');
+        assert.equal(project.get_group(), 'completed');
+        assert.equal(project.minimumProfile, 'hobby');
+        assert(!/^(Rebuilding|Integrating|Building|Implementing)\b/.test(project.highlights[0]));
+    });
+    const engine = projects.find(entry => entry.portfolioKey === 'cheryl-engine-modern');
+    assert.equal(engine.activity, 'active');
+    assert.equal(engine.period, '2026–present');
+    assert.equal(engine.get_group(), 'active');
+});
+
 check('Published adds verified independent releases, not a public repository or blog', () => {
     const academic = profiles.visibleProjects(projects, 'academic').map(p => p.id);
     const additions = profiles.visibleProjects(projects, 'published').filter(p => !academic.includes(p.id));

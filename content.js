@@ -142,11 +142,11 @@ const projects_list = [
         "name": "Space Invaders: Cheryl Engine 4 Port",
         "url": "https://cppcooper.com/project/space-invaders-cheryl-4/",
         "portfolioKey": "space-invaders-cheryl4-port",
-        "period": "2026–present",
+        "period": "2026",
         "minimumProfile": "hobby",
         "source": "Portfolio case study",
         "context": "Independent port of earlier coursework",
-        "activity": "active",
+        "activity": "completed",
         "category": "personal",
         "tags": [
             "C++",
@@ -156,7 +156,7 @@ const projects_list = [
             "Audio"
         ],
         "highlights": [
-            "Rebuilding the arcade game around Cheryl Engine 4 with coordinated waves, player state, menus, adaptive audio and persistent scores."
+            "Rebuilt the arcade game around Cheryl Engine 4 with coordinated waves, player state, menus, adaptive audio and persistent scores."
         ]
     }),
     new ProjectEntry({
@@ -164,11 +164,11 @@ const projects_list = [
         "name": "Hypermaze: Cheryl Engine 4 Port",
         "url": "https://cppcooper.com/project/hypermaze-cheryl-4/",
         "portfolioKey": "hypermaze-cheryl4-port",
-        "period": "2026–present",
+        "period": "2026",
         "minimumProfile": "hobby",
         "source": "Portfolio case study",
         "context": "Independent port of earlier coursework",
-        "activity": "active",
+        "activity": "completed",
         "category": "personal",
         "tags": [
             "C++",
@@ -178,7 +178,7 @@ const projects_list = [
             "Rendering"
         ],
         "highlights": [
-            "Integrating graph-connected terrain, sight-ray traversal, overlapping placements and retained explored tiles with the engine runtime."
+            "Integrated graph-connected terrain, sight-ray traversal, overlapping placements and retained explored tiles with the engine runtime."
         ]
     }),
     new ProjectEntry({
@@ -186,11 +186,11 @@ const projects_list = [
         "name": "Rover: Cheryl Engine 4 Port",
         "url": "https://cppcooper.com/project/rover-cheryl-4/",
         "portfolioKey": "rover-cheryl4-port",
-        "period": "2026–present",
+        "period": "2026",
         "minimumProfile": "hobby",
         "source": "Portfolio case study",
         "context": "Independent port of earlier coursework",
-        "activity": "active",
+        "activity": "completed",
         "category": "personal",
         "tags": [
             "C++",
@@ -200,7 +200,7 @@ const projects_list = [
             "UI"
         ],
         "highlights": [
-            "Building an observable pathfinder with explicit search frames, bounded simulation steps, a map editor and legacy packed-map compatibility."
+            "Built an observable pathfinder with explicit search frames, bounded simulation steps, a map editor and legacy packed-map compatibility."
         ]
     }),
     new ProjectEntry({
@@ -208,11 +208,11 @@ const projects_list = [
         "name": "Word Search: Cheryl Engine 4 Port",
         "url": "https://cppcooper.com/project/word-search-cheryl-4/",
         "portfolioKey": "word-search-cheryl4-port",
-        "period": "2026–present",
+        "period": "2026",
         "minimumProfile": "hobby",
         "source": "Portfolio case study",
         "context": "Independent port of earlier coursework",
-        "activity": "active",
+        "activity": "completed",
         "category": "personal",
         "tags": [
             "C++",
@@ -222,7 +222,7 @@ const projects_list = [
             "UI"
         ],
         "highlights": [
-            "Implementing sequential trie search, explicit occurrence rules, legacy and text puzzle loading, and match selection and reveal controls."
+            "Implemented sequential trie search, explicit occurrence rules, legacy and text puzzle loading, and match selection and reveal controls."
         ]
     }),
     new ProjectEntry({
