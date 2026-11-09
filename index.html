@@ -58,6 +58,19 @@
                         <p id="current-project-focus" class="resume-current-focus" hidden></p>
                     </div><!--//resume-summary-->
                 </div><!--//resume-intro-->
+                <div class="resume-profile-panel">
+                    <div id="resume-profile-controls" class="resume-profile-controls noprint" hidden>
+                        <label for="resume-profile">Resume profile</label>
+                        <select id="resume-profile" name="profile" aria-describedby="resume-profile-summary">
+                            <option value="professional">Professional</option>
+                            <option value="academic">Academic</option>
+                            <option value="published">Published</option>
+                            <option value="hobby">Hobby · full CV</option>
+                        </select>
+                    </div>
+                    <p id="resume-profile-summary" class="resume-profile-summary" aria-live="polite">Professional · Selected engineering projects and professional work.</p>
+                    <noscript><p>Enable JavaScript to select a resume profile and view projects, or visit the <a href="https://cppcooper.com/portfolio/">full portfolio</a>.</p></noscript>
+                </div>
                 <hr>
                 <div class="resume-body">
                     <div class="row">
@@ -69,7 +82,7 @@
                             <div id="project-section" class="project-section">
                                 <div class="project-filter-controls noprint">
                                     <span id="project-filter-summary" aria-live="polite">Select a skill below to filter projects.</span>
-                                    <button id="clear-project-filters" type="button" hidden>Show all projects</button>
+                                    <button id="clear-project-filters" type="button" hidden>Clear skill filter</button>
                                 </div>
                                 <div id="projects">
                                 </div>
@@ -145,6 +158,7 @@
             <small class="copyright text-muted">Designed with <i class="fas fa-heart"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers.</br> Heavily modified by Joshua Cooper.</small>
         </footer>
     </div><!--//main-wrapper-->
+    <script src="profiles.js"></script>
     <script src="content.js"></script>
     <script src="checkboxes.js"></script>
     <script src="phone.js"></script>

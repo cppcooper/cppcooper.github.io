@@ -1,3 +1,11 @@
+# Joshua Cooper’s resume
+
+The resume has cumulative Professional, Academic, Published and Hobby profiles.
+See [profile maintenance](PROFILE-MAINTENANCE.md) for classifications, editing,
+shareable filters and local verification. No build or dependency installation is required.
+
+The original template credits and license follow.
+
 <a href="https://themes.3rdwavemedia.com/bootstrap-templates/resume/devresume-free-bootstrap-4-resume-cv-template-for-developers/" target="_blank"><img src="https://themes.3rdwavemedia.com/wp-content/uploads/2019/04/Bootstrap-Resume-CV-Template-DevResume-Promo.jpg" alt="DevResume - Bootstrap 4 Resume/CV Template for Developers" /></a>
 
 ## Theme Details & Demo

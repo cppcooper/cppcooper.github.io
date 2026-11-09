@@ -1,3 +1,6 @@
+const resume_profiles = typeof module !== 'undefined' && module.exports
+    ? require('./profiles.js') : ResumeProfiles;
+
 function EscapeHTML(value) {
     return String(value).replace(/[&<>"']/g, character => ({
         '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
@@ -53,9 +56,11 @@ class ProjectEntry {
 
     make_item() {
         const name = this.url
-            ? `<a href="${this.url}">${EscapeHTML(this.name)}</a>`
+            ? `<a href="${EscapeHTML(this.url)}">${EscapeHTML(this.name)}</a>`
             : EscapeHTML(this.name);
         const status = this.release || activity_labels[this.activity];
+        const releases = (this.releases || []).map(release =>
+            `<a href="${EscapeHTML(release.url)}">${EscapeHTML(release.platform)}</a>`).join(', ');
         const tags = this.tags.map((tag, index) => {
             const id = `${this.id}-tag-${index}`;
             const checked = enabledSettings.includes(tag) ? ' checked' : '';
@@ -75,6 +80,7 @@ class ProjectEntry {
                 <span class="project-activity project-activity-${this.activity}">${EscapeHTML(status)}</span>
             </div>
             ${MakeHighlights(this.highlights)}
+            ${releases ? `<p class="project-release">Release: ${releases}</p>` : ''}
             <fieldset class="project-tags">
                 <legend class="sr-only">Filter projects by skills used in ${EscapeHTML(this.name)}</legend>
                 ${tags}
@@ -84,6 +90,7 @@ class ProjectEntry {
 }
 
 let enabledSettings = [];
+let selectedProfile = 'professional';
 
 const technical_skill_groups = [
     {name: 'Most used', skills: ['C++', 'CMake', 'Git']},
@@ -101,144 +108,599 @@ const interests = [
     'Modding', 'Tabletop RPGs (D&D)', 'Mutual Aid & Direct Democracy', 'Hiking', 'Cycling', 'Reverse Engineering'
 ];
 
+// Selected principal contributions; later minor maintenance/experiments are omitted.
+const dfhack_contribution_period = '2017–2023';
+
 const projects_list = [
     new ProjectEntry({
-        id: 'cheryl-engine',
-        name: 'Cheryl-Engine',
-        url: 'https://github.com/cppcooper/cheryl-engine',
-        period: 'Started 2013',
-        source: 'Open source',
-        context: 'Independent project',
-        activity: 'active',
-        category: 'personal',
-        tags: ['C++', 'CMake', 'Software Architecture', 'Concurrency', 'OpenGL', 'Unit Testing'],
-        highlights: [
-            'Designing a C++ game engine with interfaces between input, simulation, rendering, and resource management.',
-            'Implemented sequential and concurrent runtimes, event dispatch, and worker scheduling.',
-            'Built regression coverage for subsystem lifetimes and failure handling, alongside a runnable OpenGL demo.'
+        "id": "cheryl-engine",
+        "name": "Cheryl Engine 4",
+        "url": "https://cppcooper.com/project/cheryl-engine-4/",
+        "portfolioKey": "cheryl-engine-modern",
+        "period": "2026–present",
+        "minimumProfile": "professional",
+        "source": "Open source",
+        "context": "Independent engine development",
+        "activity": "active",
+        "category": "personal",
+        "tags": [
+            "C++",
+            "CMake",
+            "Software Architecture",
+            "Concurrency",
+            "OpenGL",
+            "Unit Testing"
+        ],
+        "highlights": [
+            "Developing a C++ engine with explicit runtime ownership, sequential and concurrent execution, and retained rendering and resource lifetimes.",
+            "Integrating optional subsystems, Unicode text layout and an installed SDK used by four separate game applications."
+        ],
+        "currentFocus": true
+    }),
+    new ProjectEntry({
+        "id": "space-invaders-cheryl4-port",
+        "name": "Space Invaders: Cheryl Engine 4 Port",
+        "url": "https://cppcooper.com/project/space-invaders-cheryl-4/",
+        "portfolioKey": "space-invaders-cheryl4-port",
+        "period": "2026–present",
+        "minimumProfile": "professional",
+        "source": "Portfolio case study",
+        "context": "Independent port of earlier coursework",
+        "activity": "active",
+        "category": "personal",
+        "tags": [
+            "C++",
+            "CMake",
+            "Gameplay Systems",
+            "UI",
+            "Audio"
+        ],
+        "highlights": [
+            "Rebuilding the arcade game around Cheryl Engine 4 with coordinated waves, player state, menus, adaptive audio and persistent scores."
         ]
     }),
     new ProjectEntry({
-        id: 'heavy-gear-assault',
-        name: 'Heavy Gear Assault',
-        url: 'https://store.steampowered.com/app/416020/Heavy_Gear_Assault/',
-        period: '2017',
-        source: 'Closed source',
-        context: 'Professional work · Stompy Bot Corp.',
-        activity: 'completed',
-        category: 'commercial',
-        release: 'Shipped',
-        tags: ['UE4', 'C++', 'AI', 'Linear Algebra', 'Perforce', 'Scrum'],
-        highlights: [
-            'Worked on bot AI for a shipped multiplayer mech shooter in a modified Unreal Engine 4 codebase.',
-            'Used Gaussian distributions to vary bot reaction times and other behaviour parameters.'
+        "id": "hypermaze-cheryl4-port",
+        "name": "Hypermaze: Cheryl Engine 4 Port",
+        "url": "https://cppcooper.com/project/hypermaze-cheryl-4/",
+        "portfolioKey": "hypermaze-cheryl4-port",
+        "period": "2026–present",
+        "minimumProfile": "professional",
+        "source": "Portfolio case study",
+        "context": "Independent port of earlier coursework",
+        "activity": "active",
+        "category": "personal",
+        "tags": [
+            "C++",
+            "CMake",
+            "Procedural Generation",
+            "Graphs",
+            "Rendering"
+        ],
+        "highlights": [
+            "Integrating graph-connected terrain, sight-ray traversal, overlapping placements and retained explored tiles with the engine runtime."
         ]
     }),
     new ProjectEntry({
-        id: 'fame-and-fortune',
-        name: 'Fame and Fortune: Hidden Objects',
-        url: 'https://apps.apple.com/ca/app/fame-and-fortune-hidden-objects/id980580810',
-        period: '2015',
-        source: 'Closed source',
-        context: 'Professional work · Gogii Games',
-        activity: 'completed',
-        category: 'commercial',
-        release: 'Shipped · iOS & Android',
-        tags: ['C#', 'Unity', 'UI', 'Debugging', 'Software Architecture', 'Scrum'],
-        highlights: [
-            'Implemented casino mini-game functionality for a shipped Unity mobile game.',
-            'Fixed event-system and gameplay bugs during pre-release development.'
+        "id": "rover-cheryl4-port",
+        "name": "Rover: Cheryl Engine 4 Port",
+        "url": "https://cppcooper.com/project/rover-cheryl-4/",
+        "portfolioKey": "rover-cheryl4-port",
+        "period": "2026–present",
+        "minimumProfile": "professional",
+        "source": "Portfolio case study",
+        "context": "Independent port of earlier coursework",
+        "activity": "active",
+        "category": "personal",
+        "tags": [
+            "C++",
+            "CMake",
+            "Algorithms",
+            "Data Structures",
+            "UI"
+        ],
+        "highlights": [
+            "Building an observable pathfinder with explicit search frames, bounded simulation steps, a map editor and legacy packed-map compatibility."
         ]
     }),
     new ProjectEntry({
-        id: 'sabotage',
-        name: 'Sabotage',
-        url: 'https://www.globenewswire.com/news-release/2016/06/07/1036866/0/en/Stompy-Bot-Receives-CMF-Funding-and-Announces-Sabotage.html',
-        period: '2016',
-        source: 'Closed source',
-        context: 'Professional work · Stompy Bot Corp.',
-        activity: 'completed',
-        category: 'commercial',
-        release: 'Unreleased',
-        tags: ['UE4', 'C++', 'Blueprints', 'UI', 'Perforce', 'Scrum'],
-        highlights: [
-            'Developed the player pawn controller for a side-scrolling stealth shooter based on Matt Cook’s novel Sabotage.',
-            'Implemented UMG interface widgets, including a 2D radar HUD.'
+        "id": "word-search-cheryl4-port",
+        "name": "Word Search: Cheryl Engine 4 Port",
+        "url": "https://cppcooper.com/project/word-search-cheryl-4/",
+        "portfolioKey": "word-search-cheryl4-port",
+        "period": "2026–present",
+        "minimumProfile": "professional",
+        "source": "Portfolio case study",
+        "context": "Independent port of earlier coursework",
+        "activity": "active",
+        "category": "personal",
+        "tags": [
+            "C++",
+            "CMake",
+            "Algorithms",
+            "Data Structures",
+            "UI"
+        ],
+        "highlights": [
+            "Implementing sequential trie search, explicit occurrence rules, legacy and text puzzle loading, and match selection and reveal controls."
         ]
     }),
     new ProjectEntry({
-        id: 'dfhack',
-        name: 'DFHack',
-        url: 'https://github.com/DFHack/dfhack',
-        period: 'First contributed 2017',
-        source: 'Open source',
-        context: 'Community contributions',
-        activity: 'paused',
-        category: 'community',
-        tags: ['C++', 'CMake', 'Lua', 'RNG', 'Software Architecture'],
-        highlights: [
-            'Contributed C++ plugins including cxxrandom, channel-safely, and spectate, plus Lua scripts for Dwarf Fortress.',
-            'Built tools for inspecting recursive data structures and managing game entities, and contributed changes to core systems.'
+        "id": "bccf-data-pipeline",
+        "name": "DICOM Tag Filter for Orthanc",
+        "url": "https://cppcooper.com/project/orthanc-filter/",
+        "portfolioKey": "dicom-tag-filter",
+        "period": "2021–2022",
+        "minimumProfile": "professional",
+        "source": "Open source",
+        "context": "University capstone · British Columbia Cancer Foundation",
+        "activity": "completed",
+        "category": "academic",
+        "tags": [
+            "C++",
+            "CMake",
+            "PostgreSQL",
+            "DICOM",
+            "Orthanc",
+            "Docker",
+            "Unit Testing",
+            "CI"
+        ],
+        "highlights": [
+            "Provided the primary C++ implementation, CMake setup and documentation for a team capstone project.",
+            "Implemented configurable DICOM tag filtering across ingestion, custom storage, duplicate tracking and database crosswalk updates."
         ]
     }),
     new ProjectEntry({
-        id: 'skyrim-modding',
-        name: 'Skyrim Modding',
-        url: 'https://www.nexusmods.com/skyrimspecialedition/users/235189?tab=user+files',
-        period: 'Started 2023',
-        source: 'Open source',
-        context: 'Independent projects',
-        activity: 'paused',
-        category: 'personal',
-        tags: ['C++', 'Papyrus', 'Creation Kit', 'SKSE', 'CommonLibSSE'],
-        highlights: [
-            'Developed standalone mods and fixes using Papyrus and C++ SKSE plugins.',
-            'Released mods with hundreds to thousands of unique downloads.'
+        "id": "dfhack",
+        "name": "DFHack Contributions",
+        "url": "https://cppcooper.com/project/dfhack-contributions/",
+        "portfolioKey": "dfhack",
+        "period": dfhack_contribution_period,
+        "minimumProfile": "professional",
+        "source": "Open source",
+        "context": "Community contributions",
+        "activity": "paused",
+        "category": "personal",
+        "tags": [
+            "C++",
+            "CMake",
+            "Lua",
+            "RNG",
+            "Software Architecture",
+            "Unit Testing"
+        ],
+        "highlights": [
+            "Contributed C++ gameplay plugins and Lua interfaces, including cxxrandom and Spectate, within the DFHack community project.",
+            "Worked on event handling, unit helpers, builds, tests and CI."
         ]
     }),
     new ProjectEntry({
-        id: 'bccf-data-pipeline',
-        name: 'BCCF Data Pipeline',
-        url: 'https://github.com/cppcooper/Orthanc-filter',
-        period: '2021–2022',
-        source: 'Open source',
-        context: 'University capstone · British Columbia Cancer Foundation',
-        activity: 'completed',
-        category: 'academic',
-        tags: ['C++', 'CMake', 'PostgreSQL', 'DICOM', 'Orthanc', 'Docker', 'Unit Testing', 'CI'],
-        highlights: [
-            'Built a configurable C++ Orthanc plugin to remove identifying information from DICOM medical images for research.',
-            'Automated redaction that would otherwise require processing individual files manually.'
+        "id": "dfhack-scripts",
+        "name": "DFHack Lua Scripts",
+        "url": "https://cppcooper.com/project/dfhack-scripts/",
+        "portfolioKey": "dfhack-scripts",
+        "period": dfhack_contribution_period,
+        "minimumProfile": "professional",
+        "source": "Portfolio case study",
+        "context": "Community contributions",
+        "activity": "paused",
+        "category": "personal",
+        "tags": [
+            "Lua",
+            "Data Structures",
+            "Debugging",
+            "Unit Testing"
+        ],
+        "highlights": [
+            "Developed structure-inspection and configurable dwarf-allocation tools, alongside animal and migration helpers in the community script collection."
         ]
     }),
     new ProjectEntry({
-        id: 'indras-net',
-        name: "Indra's Net",
-        url: 'https://gabora-psych.ok.ubc.ca/IN.html',
-        period: '2018–2020',
-        source: 'Closed source',
-        context: 'Research employment · UBC Okanagan',
-        activity: 'completed',
-        category: 'research',
-        tags: ['UE4', 'C++', 'Blueprints', 'Physics', 'Linear Algebra', 'Software Architecture'],
-        highlights: [
-            'Implemented procedural mesh generation, laser physics, and shaders for a psychology visualization project led by Dr. Liane Gabora.',
-            'Developed and documented systems across two summers alongside university coursework.'
+        "id": "heavy-gear-assault",
+        "name": "Heavy Gear Assault",
+        "url": "https://store.steampowered.com/app/416020/Heavy_Gear_Assault/",
+        "period": "2017",
+        "source": "Closed source",
+        "context": "Professional work · Stompy Bot Corp.",
+        "activity": "completed",
+        "category": "commercial",
+        "release": "Shipped",
+        "tags": [
+            "UE4",
+            "C++",
+            "AI",
+            "Linear Algebra",
+            "Perforce",
+            "Scrum"
+        ],
+        "highlights": [
+            "Worked on bot AI for a shipped multiplayer mech shooter in a modified Unreal Engine 4 codebase.",
+            "Used Gaussian distributions to vary bot reaction times and other behaviour parameters."
+        ],
+        "minimumProfile": "professional"
+    }),
+    new ProjectEntry({
+        "id": "fame-and-fortune",
+        "name": "Fame and Fortune: Hidden Objects",
+        "url": "https://apps.apple.com/ca/app/fame-and-fortune-hidden-objects/id980580810",
+        "period": "2015",
+        "source": "Closed source",
+        "context": "Professional work · Gogii Games",
+        "activity": "completed",
+        "category": "commercial",
+        "release": "Shipped · iOS & Android",
+        "tags": [
+            "C#",
+            "Unity",
+            "UI",
+            "Debugging",
+            "Software Architecture",
+            "Scrum"
+        ],
+        "highlights": [
+            "Implemented casino mini-game functionality for a shipped Unity mobile game.",
+            "Fixed event-system and gameplay bugs during pre-release development."
+        ],
+        "minimumProfile": "professional"
+    }),
+    new ProjectEntry({
+        "id": "sabotage",
+        "name": "Sabotage",
+        "url": "https://www.globenewswire.com/news-release/2016/06/07/1036866/0/en/Stompy-Bot-Receives-CMF-Funding-and-Announces-Sabotage.html",
+        "period": "2016",
+        "source": "Closed source",
+        "context": "Professional work · Stompy Bot Corp.",
+        "activity": "completed",
+        "category": "commercial",
+        "release": "Unreleased",
+        "tags": [
+            "UE4",
+            "C++",
+            "Blueprints",
+            "UI",
+            "Perforce",
+            "Scrum"
+        ],
+        "highlights": [
+            "Developed the player pawn controller for a side-scrolling stealth shooter based on Matt Cook’s novel Sabotage.",
+            "Implemented UMG interface widgets, including a 2D radar HUD."
+        ],
+        "minimumProfile": "professional"
+    }),
+    new ProjectEntry({
+        "id": "indras-net",
+        "name": "Indra's Net",
+        "url": "https://gabora-psych.ok.ubc.ca/IN.html",
+        "period": "2018–2020",
+        "source": "Closed source",
+        "context": "Research employment · UBC Okanagan",
+        "activity": "completed",
+        "category": "research",
+        "tags": [
+            "UE4",
+            "C++",
+            "Blueprints",
+            "Physics",
+            "Linear Algebra",
+            "Software Architecture"
+        ],
+        "highlights": [
+            "Implemented procedural mesh generation, laser physics, and shaders for a psychology visualization project led by Dr. Liane Gabora.",
+            "Developed and documented systems across two summers alongside university coursework."
+        ],
+        "minimumProfile": "professional"
+    }),
+    new ProjectEntry({
+        "id": "amazons-ai",
+        "name": "Game of the Amazons AI",
+        "url": "https://cppcooper.com/project/game-of-the-amazons-ai/",
+        "portfolioKey": "game-of-the-amazons-ai",
+        "period": "2021",
+        "minimumProfile": "academic",
+        "source": "Open source",
+        "context": "University project · AI implementation",
+        "activity": "paused",
+        "category": "academic",
+        "tags": [
+            "Java",
+            "AI",
+            "Parallel Computing",
+            "Data Structures",
+            "Software Architecture"
+        ],
+        "highlights": [
+            "Implemented piece-and-arrow move generation, territory and mobility evaluation, pooled move objects and separate search workers.",
+            "Built the agent against the separately supplied course client and libraries; a later refactor remains unfinished."
         ]
     }),
     new ProjectEntry({
-        id: 'amazons-ai',
-        name: 'Amazons-AI',
-        url: 'https://github.com/cppcooper/game-of-the-amazons-ai',
-        period: '2021',
-        source: 'Open source',
-        context: 'University team project',
-        activity: 'completed',
-        category: 'academic',
-        tags: ['Java', 'AI', 'Parallel Computing', 'Client/Server', 'Software Architecture'],
-        highlights: [
-            'Developed a game-playing AI with a team for a competition with 2,176 legal opening moves.',
-            'The team placed fifth out of approximately 25 teams, despite hardware-overheating forfeits.'
+        "id": "cosc320-flightpathfinding",
+        "name": "Flight Itinerary Search",
+        "url": "https://cppcooper.com/project/flight-itinerary-search/",
+        "portfolioKey": "cosc320-flightpathfinding",
+        "period": "2021",
+        "minimumProfile": "academic",
+        "source": "Portfolio case study",
+        "context": "University team project",
+        "activity": "completed",
+        "category": "academic",
+        "tags": [
+            "Java",
+            "Algorithms",
+            "Graphs",
+            "Data Structures"
+        ],
+        "highlights": [
+            "Contributed the entry point, search-node representation, debugging and refactoring to a team project exploring scheduled-flight searches."
+        ]
+    }),
+    new ProjectEntry({
+        "id": "hypermaze",
+        "name": "Hypermaze Prototype",
+        "url": "https://cppcooper.com/project/hypermaze/",
+        "portfolioKey": "hypermaze",
+        "period": "2016",
+        "minimumProfile": "academic",
+        "source": "Portfolio case study",
+        "context": "Earlier algorithm and game work",
+        "activity": "completed",
+        "category": "personal",
+        "tags": [
+            "C++",
+            "Procedural Generation",
+            "Graphs",
+            "Linear Algebra"
+        ],
+        "highlights": [
+            "Implemented probabilistic room-and-corridor graph generation, terrain traversal and translations between world and tile-map coordinates."
+        ]
+    }),
+    new ProjectEntry({
+        "id": "word-search-with-threads",
+        "name": "Word Search with Threads",
+        "url": "https://cppcooper.com/project/word-search-with-threads/",
+        "portfolioKey": "word-search-with-threads",
+        "period": "2015",
+        "minimumProfile": "academic",
+        "source": "Portfolio case study",
+        "context": "Earlier algorithm and game work",
+        "activity": "completed",
+        "category": "personal",
+        "tags": [
+            "C++",
+            "Concurrency",
+            "Algorithms",
+            "Data Structures"
+        ],
+        "highlights": [
+            "Built a solver that extracts directional strings, groups comparisons by word length and collects thread results through promises and futures."
+        ]
+    }),
+    new ProjectEntry({
+        "id": "space-invaders-bullet-hell",
+        "name": "Space Invaders",
+        "url": "https://cppcooper.com/project/space-invaders/",
+        "portfolioKey": "space-invaders-bullet-hell",
+        "period": "2014",
+        "minimumProfile": "academic",
+        "source": "Portfolio case study",
+        "context": "Earlier algorithm and game work",
+        "activity": "completed",
+        "category": "personal",
+        "tags": [
+            "C++",
+            "Gameplay Systems",
+            "Algorithms"
+        ],
+        "highlights": [
+            "Implemented formation control, weighted enemy volleys, fixed-step updates, collision handling and scorekeeping for a coursework arcade game."
+        ]
+    }),
+    new ProjectEntry({
+        "id": "rover",
+        "name": "Rover Recursive Pathfinding",
+        "url": "https://cppcooper.com/project/rover/",
+        "portfolioKey": "rover",
+        "period": "2014",
+        "minimumProfile": "academic",
+        "source": "Portfolio case study",
+        "context": "Earlier algorithm and game work",
+        "activity": "completed",
+        "category": "personal",
+        "tags": [
+            "C++",
+            "Algorithms",
+            "Data Structures"
+        ],
+        "highlights": [
+            "Explored direction-ordered recursive traversal, saved continuation state and a packed representation storing sixteen tile values in 32 bits."
+        ]
+    }),
+    new ProjectEntry({
+        "id": "a-star",
+        "name": "A* Pathfinding",
+        "url": "https://cppcooper.com/project/a-star/",
+        "portfolioKey": "a-star",
+        "period": "2013",
+        "minimumProfile": "academic",
+        "source": "Portfolio case study",
+        "context": "Earlier algorithm and game work",
+        "activity": "completed",
+        "category": "personal",
+        "tags": [
+            "C++",
+            "Algorithms",
+            "Data Structures"
+        ],
+        "highlights": [
+            "Implemented orthogonal A* pathfinding with alternative open and closed containers and a seeded maze driver for comparison experiments."
+        ]
+    }),
+    new ProjectEntry({
+        "id": "magickareserve",
+        "name": "Reserved Magicka NG",
+        "url": "https://cppcooper.com/project/magicka-reserve/",
+        "portfolioKey": "magickareserve",
+        "period": "2023",
+        "minimumProfile": "published",
+        "source": "Portfolio case study",
+        "context": "Independent Skyrim mod",
+        "activity": "paused",
+        "category": "personal",
+        "tags": [
+            "C++",
+            "Papyrus",
+            "SKSE",
+            "CommonLibSSE",
+            "Gameplay Systems"
+        ],
+        "highlights": [
+            "Released a Skyrim mod whose native equipment-event calculations reserve magicka for worn enchantments and reconstruct the total after loading a save.",
+            "Integrated the custom mechanic with Papyrus and game data using inherited CommonLibSSE plugin scaffolding."
+        ],
+        "release": "Released · Nexus Mods",
+        "releases": [
+            {
+                "platform": "Nexus Mods",
+                "url": "https://www.nexusmods.com/skyrimspecialedition/mods/91384",
+                "year": 2023
+            }
+        ]
+    }),
+    new ProjectEntry({
+        "id": "skyrim-modding",
+        "name": "Skyrim Modding",
+        "url": "https://www.nexusmods.com/skyrimspecialedition/users/235189?tab=user+files",
+        "period": "Started 2023",
+        "source": "Open source",
+        "context": "Independent projects",
+        "activity": "paused",
+        "category": "personal",
+        "tags": [
+            "C++",
+            "Papyrus",
+            "Creation Kit",
+            "SKSE",
+            "CommonLibSSE"
+        ],
+        "highlights": [
+            "Developed standalone mods and fixes using Papyrus and C++ SKSE plugins.",
+            "Released mods with hundreds to thousands of unique downloads."
+        ],
+        "minimumProfile": "published",
+        "releases": [
+            {
+                "platform": "Nexus Mods",
+                "url": "https://www.nexusmods.com/skyrimspecialedition/users/235189?tab=user+files"
+            }
+        ]
+    }),
+    new ProjectEntry({
+        "id": "cheryl-engine-historical",
+        "name": "Cheryl Engine",
+        "url": "https://cppcooper.com/project/cheryl-engine/",
+        "portfolioKey": "cheryl-engine",
+        "period": "2014",
+        "minimumProfile": "hobby",
+        "source": "Portfolio case study",
+        "context": "Independent engine development · historical",
+        "activity": "completed",
+        "category": "personal",
+        "tags": [
+            "C++",
+            "Software Architecture",
+            "OpenGL",
+            "Data Structures"
+        ],
+        "highlights": [
+            "Built the earlier engine’s asset factories, loaders, management layers, pools and input contexts before the current v4 architecture."
+        ]
+    }),
+    new ProjectEntry({
+        "id": "wp-portfolio-template",
+        "name": "Rebuilding the Portfolio",
+        "url": "https://cppcooper.com/project/portfolio-reconstruction/",
+        "portfolioKey": "wp-portfolio-template",
+        "period": "2026",
+        "minimumProfile": "hobby",
+        "source": "Portfolio case study",
+        "context": "Independent website and migration tooling",
+        "activity": "active",
+        "category": "personal",
+        "tags": [
+            "PHP",
+            "WordPress",
+            "JavaScript",
+            "Docker",
+            "Git"
+        ],
+        "highlights": [
+            "Reconstructed WordPress locally while preserving content IDs, repeated metadata, media paths and project-to-article relationships.",
+            "Built repeatable offline setup and verification tooling and a shared presentation for projects, writing and archives."
+        ]
+    }),
+    new ProjectEntry({
+        "id": "nxm",
+        "name": "NXM: Collecting Mod Dependencies",
+        "url": "https://cppcooper.com/project/nxm-mod-dependencies/",
+        "portfolioKey": "nxm",
+        "period": "2021–2022",
+        "minimumProfile": "hobby",
+        "source": "Portfolio case study",
+        "context": "Independent command-line prototype",
+        "activity": "paused",
+        "category": "personal",
+        "tags": [
+            "C++",
+            "HTTP",
+            "JSON",
+            "Graphs",
+            "CLI"
+        ],
+        "highlights": [
+            "Built API-backed command-line listings and recursive requirement discovery for Nexus mods; bulk downloads remain unfinished."
+        ]
+    }),
+    new ProjectEntry({
+        "id": "time-tracker",
+        "name": "A Terminal Time Tracker",
+        "url": "https://cppcooper.com/project/terminal-time-tracker/",
+        "portfolioKey": "time-tracker",
+        "period": "2022",
+        "minimumProfile": "hobby",
+        "source": "Portfolio case study",
+        "context": "Independent terminal utility",
+        "activity": "paused",
+        "category": "personal",
+        "tags": [
+            "C++",
+            "CMake",
+            "Linux",
+            "CLI"
+        ],
+        "highlights": [
+            "Built a terminal time tracker with persisted clock pairs and session resumption, with multi-day rollover work still unfinished."
+        ]
+    }),
+    new ProjectEntry({
+        "id": "shirly",
+        "name": "Shirly",
+        "url": "https://cppcooper.com/project/shirly/",
+        "portfolioKey": "shirly",
+        "period": "2006",
+        "minimumProfile": "hobby",
+        "source": "Portfolio case study",
+        "context": "Early collaborative game · game logic",
+        "activity": "completed",
+        "category": "personal",
+        "tags": [
+            "Visual Basic 6",
+            "Gameplay Systems",
+            "Data Structures"
+        ],
+        "highlights": [
+            "Implemented collision-driven board changes, generated levels, controls and saved state for an early grid game; Ben handled the renderer."
         ]
     })
 ];
@@ -265,54 +727,6 @@ const experience = [
     ])
 ];
 
-const project_groups = [
-    {id: 'active', title: 'Active Projects'},
-    {id: 'maintained', title: 'Maintained Projects'},
-    {id: 'commercial', title: 'Shipped & Commercial Work'},
-    {id: 'paused', title: 'Paused Projects'},
-    {id: 'completed', title: 'Completed Work'}
-];
-
-function RenderProjects() {
-    const visible = projects_list.filter(project => enabledSettings.length === 0
-        || project.tags.some(tag => enabledSettings.includes(tag)));
-    const controls = document.querySelector('.project-filter-controls');
-    if (controls) controls.remove();
-    const container = document.getElementById('projects');
-    container.innerHTML = project_groups.map(group => {
-        const entries = visible.filter(project => project.get_group() === group.id);
-        if (entries.length === 0) return '';
-        return `<section class="project-group py-3" aria-labelledby="project-group-${group.id}">
-            <h3 id="project-group-${group.id}" class="text-uppercase resume-section-heading mb-4">${EscapeHTML(group.title)}</h3>
-            ${entries.map(project => project.make_item()).join('')}
-        </section>`;
-    }).join('');
-    if (controls) {
-        const firstHeading = container.querySelector('.project-group > h3');
-        if (firstHeading) firstHeading.after(controls);
-        else container.append(controls);
-    }
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {projects_list, experience, ProjectEntry, EscapeHTML};
 }
-
-function RenderCurrentFocus() {
-    const element = document.getElementById('current-project-focus');
-    if (!element) return;
-    const active = projects_list.filter(project => project.activity === 'active');
-    element.hidden = active.length === 0;
-    element.innerHTML = active.length
-        ? `Current project focus: ${active.map(project => `<a href="#project-${project.id}">${EscapeHTML(project.name)}</a>`).join(', ')}.`
-        : '';
-}
-
-document.getElementById('tech-skills').innerHTML = technical_skill_groups.map(group => `
-    <div class="technical-skill-group">
-        <h4>${EscapeHTML(group.name)}</h4>
-        <ul class="list-inline mb-0">${group.skills.map(skill => MakeListEntry(skill, 'list-inline-item', 'badge badge-tech')).join('')}</ul>
-    </div>`).join('');
-document.getElementById('soft-skills').innerHTML = soft_skills
-    .map(skill => MakeListEntry(skill, 'list-inline-item', 'badge badge-soft')).join('');
-document.getElementById('interests').innerHTML = interests
-    .map(interest => MakeListEntry(interest, 'list-inline-item', 'badge badge-hobbies')).join('');
-document.getElementById('experience').insertAdjacentHTML('beforeend', experience.map(entry => entry.make_item()).join(''));
-RenderProjects();
-RenderCurrentFocus();

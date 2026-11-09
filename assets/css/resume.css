@@ -49,6 +49,49 @@ input:focus-visible + span {
     outline-offset: 3px;
 }
 
+select:focus-visible {
+    outline: 3px solid #2098d1;
+    outline-offset: 3px;
+}
+
+.resume-profile-panel {
+    margin: .5rem 0 1rem;
+}
+
+.resume-profile-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .5rem .75rem;
+}
+
+.resume-profile-controls label {
+    margin: 0;
+    font-size: .875rem;
+    font-weight: 600;
+}
+
+.resume-profile-controls select {
+    width: 15rem;
+    max-width: 100%;
+    padding: .45rem .65rem;
+    border: 1px solid #92a59b;
+    border-radius: .25rem;
+    background: #fff;
+    color: #286348;
+    font: inherit;
+    font-size: .875rem;
+}
+
+.resume-profile-summary,
+.project-empty,
+.project-release {
+    margin: .5rem 0;
+    color: #59616a;
+    font-size: .8rem;
+    line-height: 1.5;
+}
+
 .resume-intro {
     line-height: 1.6;
 }

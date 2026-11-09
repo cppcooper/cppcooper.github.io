@@ -31,7 +31,7 @@
         window.scrollBy(0, topAfter - topBefore);
     });
 
-    // Both print commands preserve the currently filtered project selection.
+    // Printing preserves the selected cumulative profile and its skill filter.
     printButton.addEventListener('click', () => window.print());
     window.addEventListener('beforeprint', () => {
         PositionSidebar(true);

@@ -112,6 +112,19 @@ hr {
     margin-top: 5pt;
 }
 
+.resume-profile-panel {
+    margin: 4pt 0;
+}
+
+.resume-profile-summary,
+.project-empty,
+.project-release {
+    margin: 2pt 0;
+    color: #444;
+    font-size: 9pt;
+    line-height: 1.3;
+}
+
 .resume-aside {
     margin-bottom: 8pt;
     padding-bottom: 0 !important;
