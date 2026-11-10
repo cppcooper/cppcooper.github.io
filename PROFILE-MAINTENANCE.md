@@ -56,7 +56,9 @@ overlap and must not be added together as a count of separate releases.
    Adjust the expected public inventory and cumulative counts deliberately if
    projects are added or classifications change.
 
-Native project tags apply an OR skill filter *within* the selected profile. The
+Native project tags apply an AND skill filter *within* the selected profile:
+a project must use every selected skill. With no skills selected, all projects in
+the profile are shown. The
 clear button clears skills while retaining the profile. URLs such as
 `?profile=published&skill=Papyrus` preserve that selection for sharing. Unknown
 profile values fall back to Professional; unknown skills are ignored. Browser
@@ -82,8 +84,9 @@ The existing employment project descriptions remain owner-authored resume facts.
 Orthanc now describes the primary implementation within a team capstone; it makes
 no verified deployment, clinical or privacy assurance. Amazons describes the AI
 implementation and supplied course-client boundary, without repeating a placement
-claim absent from the reviewed portfolio evidence. Modern engine and port work
-remains in development. Shirly credits Ben for rendering.
+claim absent from the reviewed portfolio evidence. Cheryl Engine 4 remains in
+active development; its four college ports were completed in 2026. Shirly credits
+Ben for rendering.
 
 The automated checks cover inclusion, cumulative boundaries, releases, role labels,
 skill/profile intersection, URL round trips and malformed values, browser controller

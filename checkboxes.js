@@ -38,7 +38,7 @@ function UpdateProjectFilterSummary() {
     const total = resume_profiles.visibleProjects(projects_list, selectedProfile).length;
     const count = VisibleProjects().length;
     document.getElementById('project-filter-summary').textContent = enabledSettings.length
-        ? `${count} of ${total} projects in this profile use ${enabledSettings.join(' or ')}.`
+        ? `${count} of ${total} projects in this profile use ${enabledSettings.join(' and ')}.`
         : `${total} projects in this profile. Select a skill below to filter.`;
     const profile = resume_profiles.profiles.find(entry => entry.id === selectedProfile);
     document.getElementById('resume-profile').value = selectedProfile;

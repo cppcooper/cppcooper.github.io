@@ -86,15 +86,21 @@ check('Published adds verified independent releases, not a public repository or 
     assert(!profiles.visibleProjects(projects, 'published').some(p => p.portfolioKey === 'wp-portfolio-template'));
 });
 
-check('skill matching intersects with the profile and retains OR semantics for multiple skills', () => {
+check('skill matching requires every selected skill within the selected profile', () => {
     const cpp = profiles.visibleProjects(projects, 'professional', ['C++']);
     assert(cpp.length > 0);
     cpp.forEach(p => assert(p.tags.includes('C++') && p.minimumProfile === 'professional'));
     const java = profiles.visibleProjects(projects, 'professional', ['Java']);
     assert.equal(java.length, 0);
     assert.equal(profiles.visibleProjects(projects, 'academic', ['Java']).length, 2);
-    const combined = profiles.visibleProjects(projects, 'academic', ['Java', 'Lua']);
-    combined.forEach(p => assert(p.tags.includes('Java') || p.tags.includes('Lua')));
+    const both = profiles.visibleProjects(projects, 'professional', ['UE4', 'Perforce']);
+    assert.deepEqual(both.map(project => project.id).sort(), ['heavy-gear-assault', 'sabotage']);
+    both.forEach(project => assert(project.tags.includes('UE4') && project.tags.includes('Perforce')));
+    assert.equal(profiles.visibleProjects(projects, 'professional', ['C++', 'Unity']).length, 0);
+    assert.equal(profiles.visibleProjects(projects, 'academic', ['Java', 'Lua']).length, 0);
+    assert.deepEqual(profiles.visibleProjects(projects, 'hobby', ['C++', 'Lua']).map(project => project.id), ['dfhack']);
+    assert.equal(profiles.visibleProjects(projects, 'professional', ['C++', 'Lua']).length, 0);
+    assert.equal(profiles.visibleProjects(projects, 'professional', []).length, 4);
     assert.equal(profiles.visibleProjects(projects, 'hobby', ['Visual Basic 6']).length, 1);
 });
 
@@ -192,14 +198,15 @@ check('a shared filter, empty selection, clear action and browser Back restore t
     fixture.element('clear-project-filters').listeners.click();
     assert.equal(projectIds(fixture.element('projects').innerHTML).length, 4);
     assert(!fixture.window.location.search.includes('skill='));
-    fixture.window.location.search = '?profile=published&skill=Papyrus';
+    fixture.window.location.search = '?profile=published&skill=Papyrus&skill=SKSE';
     fixture.listeners.popstate();
     assert.equal(fixture.element('resume-profile').value, 'published');
     assert.equal(projectIds(fixture.element('projects').innerHTML).length, 2);
+    assert.match(fixture.element('project-filter-summary').textContent, /Papyrus and SKSE/);
 });
 
 check('printing and print-friendly view keep exactly the selected profile and skills', () => {
-    const fixture = browserFixture('?profile=published&skill=Papyrus');
+    const fixture = browserFixture('?profile=published&skill=Papyrus&skill=SKSE');
     const selected = fixture.element('projects').innerHTML;
     fixture.element('toggle-print-view').listeners.click();
     assert.equal(fixture.element('resume-print-styles').media, 'all');

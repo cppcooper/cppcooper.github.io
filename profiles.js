@@ -20,7 +20,7 @@ const ResumeProfiles = (() => {
 
     function visibleProjects(projects, profile, skills = []) {
         return projects.filter(project => includesProject(profile, project)
-            && (skills.length === 0 || project.tags.some(tag => skills.includes(tag))));
+            && skills.every(skill => project.tags.includes(skill)));
     }
 
     function parseState(search, projects) {
